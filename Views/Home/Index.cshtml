@@ -1,0 +1,88 @@
+﻿@model PAYROL_SYSTEM.Models.Users
+
+
+
+
+<body style="background-color:#f0f2f5">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-1 d-md-none d-lg-block">
+
+            </div>
+            <div class="col-md-10">
+                <div class="row" style="margin-top:50px;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
+
+
+                    <div class="col-12 d-none d-lg-block   col-sm-6" style="background-color:white;border-top-left-radius:8px;border-bottom-left-radius:8px">
+                        <div style="padding:8px;margin-top:8px;text-align:center">
+                            <img src="~/Icons/ECAN_CRF.jpeg" style="max-height:300px;width:auto" class="img-fluid" />
+                        </div>
+                        <div style="text-align:center;font-size:xx-large;color:#072652;font-family:'Century Gothic'">ECAN PAYROL </div>
+                        <div style="font-size:medium;color:gray;text-align:center">
+                            P.O BOX 4690-30100
+                        </div>
+                        <div style="font-size:medium;color:gray;text-align:center;padding-bottom:16px">
+                            www.ecancrf.co.ke
+                        </div>
+                    </div>
+                    <div class="col-12 d-block d-lg-none   col-sm-6" style="background-color:white;;border-top-left-radius:8px;border-top-right-radius:8px">
+                        <div style="padding:8px;margin-top:8px;text-align:center">
+                            <img src="~/Icons/ECAN_CRF.jpeg" style="max-height:100px;width:auto" class="img-fluid" />
+                        </div>
+                        <div style="text-align:center;font-size:x-large;color:#072652;font-family:'Century Gothic'">ECAN PAYROL </div>
+
+                    </div>
+                    <div class="col-12 col-lg-6 " id="sighnInDiiiiv" style="background-color:white">
+
+                        <div style="text-align:center;background-color:white;color:black;border-radius:8px;height:auto;margin-bottom:34px;margin-top:34px">
+
+                            @using (Html.BeginForm("LoginUser", "Home", FormMethod.Post, new { role = "form" }))
+                            {
+
+                                <div style="padding:8px;text-align:left">
+                                    Username
+                                    <input type="text" asp-for="strUsername" style="background-color:lavender" class="form-control" />
+
+                                    Password
+                                    <input type="password" asp-for="strPassword" style="background-color:lavender" class="form-control" />
+                                    <br />
+
+                                    <input style="text-align:center;background-color:#072652;color:white;padding:4px;border-radius:8px ;width:100%;border:none;margin-bottom:8px" type="submit" value="Sign In" />
+                                    <br />
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
+                                                    <label class="custom-control-label" for="defaultUnchecked">Remember Me</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <a asp-action="" asp-controller="">  Forgot Password</a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="color:gray;font-size:medium;margin-bottom:8px;margin-top:24px">
+                                        By clicking sign in,you will have agreed with our terms and policies
+                                    </div>
+                                </div>
+
+                            }
+
+                        </div>
+                        @if (TempData["Err"] != null)
+                        {
+                            <div class="text-center text-danger p-2">
+                                <strong>Opps!!..</strong>@TempData["Err"]
+                            </div>
+                        }
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
