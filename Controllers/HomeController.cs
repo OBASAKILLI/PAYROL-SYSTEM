@@ -23,12 +23,38 @@ namespace PAYROL_SYSTEM.Controllers
         {
             return View();
         }
+        
+        public IActionResult Dashboard()
+        {
+            return View();
+        }
+        public async Task<IActionResult> Department()
+        {
+
+            return View(await _unitOfWork.departmentRepo.GetAll());
+        }
+        public IActionResult Employees()
+        {
+            return View();
+        }
 
         public IActionResult Privacy()
         {
             return View();
         }
 
+        public async Task<IActionResult> CreateDepartment(string strdepa_name)
+        {
+            Departments d = new Departments();
+            d.strDepartmentId = strdepa_name;
+            d.strId = Guid.NewGuid().ToString();
+
+           await _unitOfWork.departmentRepo.AddNew(d);
+            _unitOfWork.save();
+
+            TempData["successs"] = $"{strdepa_name} was added successfully";
+            return Redirect("~/Home/Department");
+        }
 
         [AllowAnonymous]
         public IActionResult LoginUser(Users user)
@@ -37,8 +63,8 @@ namespace PAYROL_SYSTEM.Controllers
             if (user.strUsername == null || user.strUsername == null)
             {
                 TempData["Err"] = "Username or password fields cannot be empty";
-                //return Redirect("~/Home/Index");
-                return Content("Username or password fields cannot be empty");
+                return Redirect("~/Home/Index");
+                //return Content("Username or password fields cannot be empty");
             }
             // var pass = user.strUserName;
 
@@ -47,23 +73,22 @@ namespace PAYROL_SYSTEM.Controllers
             var userToken = TokenProvider.LoginUser(user.strUsername, user.strPassword);
         
             if (userToken != null)
-            {
-              
+            {           
 
 
                 HttpContext.Session.SetString("Name", TokenProvider.GetUserDetails(user.strUsername, user.strPassword).strFullName);
                 HttpContext.Session.SetString("JWToken", userToken);
 
-                // return Redirect("~/Home/HomePage");
-                return Content("Login Success");
+                 return Redirect("~/Home/Dashboard");
+                //return Content("Login Success");
 
             }
             else
             {
                 TempData["Err"] = "Wrong password or username";
-                //  return RedirectToAction("Index", "Home");
+                  return RedirectToAction("Index", "Home");
 
-                return Content("Wrong User credentials");
+               // return Content("Wrong User credentials");
             }
 
 

@@ -21,7 +21,7 @@
         <ul class="sidebar-menu treeview" data-widget="tree">
 
             <li class="treeview" style="height: auto;color:black">
-                <a asp-action="HomePage" onclick="reload()" asp-controller="Home">
+                <a asp-action="Dashboard"  asp-controller="Home">
                     <i style="color:gray" class="fal fa-tachometer-alt-slowest"></i>
                     <span style="color:gray">
                         <b>Dashboard</b>
@@ -42,91 +42,15 @@
                 <a href="#">
                     <img src="~/Icons/001-booking.png" style="height:24px;width:auto;margin-right:12px" class="img-fluid" />
 
-                    <span style="color:gray;" class="Mennnnu"> Bookings  <br /><span style="margin-left:44px;font-size:x-small" class="Mennnnu">View/Manage Room bookings </span></span>
+                    <span style="color:gray;" class="Mennnnu"> Employees  <br /><span style="margin-left:44px;font-size:x-small" class="Mennnnu">View/Manage Employees </span></span>
                     <span class="pull-right-container">
                         <i style="color:gray" class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu" style="display: none">
                     <li>
-                        <a asp-action="Bookings" asp-controller="Home" asp-route-Id="">
-                            <i class="fa fa-eye" aria-hidden="true"></i>View Bookings
-                        </a>
-                    </li>
-
-
-                </ul>
-            </li>
-            <li class="treeview" style="height: auto;color:gray">
-                <a href="#">
-                    <img src="~/Icons/002-expenses.png" style="height:24px;width:auto;margin-right:12px" class="img-fluid" />
-
-                    <span style="color:gray;" class="Mennnnu"> Expenses  <br /><span style="margin-left:44px;font-size:x-small" class="Mennnnu">View/Manage Expense </span></span>
-                    <span class="pull-right-container">
-                        <i style="color:gray" class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu" style="display: none">
-                    <li>
-                        <a asp-action="Expenses" asp-controller="Home" asp-route-Id="">
-                            <i class="fa fa-eye" aria-hidden="true"></i>View Expenses
-                        </a>
-                    </li>
-
-
-                </ul>
-            </li>
-            <li class="treeview" style="height: auto;color:gray">
-                <a href="#">
-                    <img src="~/Icons/003-payment-gateway.png" style="height:24px;width:auto;margin-right:12px" class="img-fluid" />
-
-                    <span style="color:gray;" class="Mennnnu"> Payments  <br /><span style="margin-left:44px;font-size:x-small" class="Mennnnu">View/Manage Payments </span></span>
-                    <span class="pull-right-container">
-                        <i style="color:gray" class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu" style="display: none">
-                    <li>
-                        <a asp-action="Payments" asp-controller="Home" asp-route-Id="">
-                            <i class="fa fa-eye" aria-hidden="true"></i>View Payments
-                        </a>
-                    </li>
-
-
-                </ul>
-            </li>
-            <li class="treeview" style="height: auto;color:gray">
-                <a href="#">
-                    <img src="~/Icons/004-meeting-room.png" style="height:24px;width:auto;margin-right:12px" class="img-fluid" />
-
-                    <span style="color:gray;" class="Mennnnu"> Rooms  <br /><span style="margin-left:44px;font-size:x-small" class="Mennnnu">View/Manage Rooms </span></span>
-                    <span class="pull-right-container">
-                        <i style="color:gray" class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu" style="display: none">
-                    <li>
-                        <a asp-action="Rooms" asp-controller="Home" asp-route-Id="">
-                            <i class="fa fa-eye" aria-hidden="true"></i>View Rooms
-                        </a>
-                    </li>
-
-
-                </ul>
-            </li>
-            <li class="treeview" style="height: auto;color:gray">
-                <a href="#">
-                    <img src="~/Icons/005-tenant.png" style="height:24px;width:auto;margin-right:12px" class="img-fluid" />
-
-                    <span style="color:gray;" class="Mennnnu"> Tenants  <br /><span style="margin-left:44px;font-size:x-small" class="Mennnnu">View/Manage Tenants </span></span>
-                    <span class="pull-right-container">
-                        <i style="color:gray" class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu" style="display: none">
-                    <li>
-                        <a asp-action="Tenants" asp-controller="Home" asp-route-Id="">
-                            <i class="fa fa-eye" aria-hidden="true"></i>View Tenants
+                        <a asp-action="Employees" asp-controller="Home" asp-route-Id="">
+                            <i class="fa fa-eye" aria-hidden="true"></i>View Employee Info
                         </a>
                     </li>
 
@@ -136,17 +60,17 @@
 
             <li class="treeview" style="height: auto;color:gray">
                 <a href="#">
-                    <img src="~/Icons/group(1).png" style="height:24px;width:auto;margin-right:12px" class="img-fluid" />
+                    <img src="~/Icons/001-booking.png" style="height:24px;width:auto;margin-right:12px" class="img-fluid" />
 
-                    <span style="color:gray" class="Mennnnu">Users <br /><span style="margin-left:44px;font-size:x-small" class="Mennnnu">View/Manage Users</span></span>
+                    <span style="color:gray;" class="Mennnnu"> Departments  <br /><span style="margin-left:44px;font-size:x-small" class="Mennnnu">View/Manage departments </span></span>
                     <span class="pull-right-container">
                         <i style="color:gray" class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
-                <ul class="treeview-menu" style="display: none;">
+                <ul class="treeview-menu" style="display: none">
                     <li>
-                        <a asp-action="UserPage" asp-controller="Home">
-                            <i class="fa fa-eye" aria-hidden="true"></i>Manage Users
+                        <a asp-action="Department" asp-controller="Home" asp-route-Id="">
+                            <i class="fa fa-eye" aria-hidden="true"></i>View Departments
                         </a>
                     </li>
 

@@ -31,3 +31,6 @@ D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\Shar
 D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_DshboardsideMenu.g.cshtml.cs
 D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_Search.g.cshtml.cs
 D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\PAYROL_SYSTEM.csprojAssemblyReference.cache
+D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\Home\Dashboard.g.cshtml.cs
+D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\Home\Department.g.cshtml.cs
+D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\Home\Employees.g.cshtml.cs

@@ -22,7 +22,7 @@ namespace PAYROL_SYSTEM.Repositories
            await _appDbContext.Set<T>().AddAsync(entity);
         }
 
-        public async Task<List<T>> GetAll(T entity)
+        public async Task<List<T>> GetAll()
         {
            return await _appDbContext.Set<T>().ToListAsync();
         }
