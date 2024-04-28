@@ -33,4 +33,15 @@ D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\Shar
 D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\PAYROL_SYSTEM.csprojAssemblyReference.cache
 D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\Home\Dashboard.g.cshtml.cs
 D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\Home\Department.g.cshtml.cs
-D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\Home\Employees.g.cshtml.cs
+D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\DesignationRole\Index.g.cshtml.cs
+D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\Job_Group\Index.g.cshtml.cs
+D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\AllowanceTypes\Index.g.cshtml.cs
+D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\Employees\Index.g.cshtml.cs
+D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\Employees\CreateNewEmployee.g.cshtml.cs
+D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\Test.g.cshtml.cs
+D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\TestTestTest\Create.g.cshtml.cs
+D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\TestTestTest\Delete.g.cshtml.cs
+D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\TestTestTest\Details.g.cshtml.cs
+D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\TestTestTest\Edit.g.cshtml.cs
+D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\TestTestTest\Index.g.cshtml.cs
+D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\Employees\EditEmployee.g.cshtml.cs

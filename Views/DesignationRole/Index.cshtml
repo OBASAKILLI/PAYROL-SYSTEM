@@ -1,0 +1,181 @@
+﻿@using Syncfusion.EJ2
+@using Newtonsoft.Json
+@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@inject PAYROL_SYSTEM.Interfaces.IUnitOfWork _unitofwork  
+
+
+
+
+
+    @using PAYROL_SYSTEM.Session;
+    <link href="~/Syncfussion/styles/material.css" rel="stylesheet" />
+    <script src="~/Syncfussion/scripts/ej2.min.js"></script>
+    @{
+        List<Designation_Role> designation_Roles = await _unitofwork.Idesignation_RoleRepo.GetAll();
+
+        Layout = "~/Views/Shared/_Dashboard.cshtml";
+    }
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-6">
+                <h1 style="font-weight:bold;font-family:Calibri;color:#072652">Designation/Role</h1>
+
+            </div>
+
+        </div>
+
+
+        <div class="row">
+            <div class="col-sm-4" style="background-color:white">
+                <img src="~/Icons/undraw_Online_payments_re_y8f2.png" style="max-height:200px" class="img-fluid" />
+                <div style="padding:8px;margin:2px;background-color:white;overflow:auto;margin-bottom:24px;margin-top:16px; ">
+                    <div style="font-size:large">
+                        Add New Designation
+                    </div>
+                    <div style="font-size:small;color:gray">
+                        add new designation into the system
+                    </div>
+                    <p>
+
+                    </p>
+                    <form asp-action="CreateDesignation" method="post">
+
+                        <div class="form-group">
+                            <input name="strDesignation_Role" type="text" required placeholder="Designation" class="form-control" />
+                        </div>
+                        <div class="form-group" style="text-align:center;margin-top:24px">
+                            <input type="submit" value="Add  Designation" style="background-color:#072652;color:white" class="btn  btn-sm" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div style="text-align:start;margin-top:8px">
+                    <div style="font-size:large">
+                        All Designation Positions
+                    </div>
+                    <div style="font-size:small;color:gray">
+                        List of all designation/Roles in ECAN CRF
+                    </div>
+                </div>
+
+                @if (TempData["successs"] != null)
+                {
+                    <div class="alert alert-success">
+                        <strong>Success!!..</strong>@TempData["successs"]
+                    </div>
+                }
+                @if (TempData["Err"] != null)
+                {
+                    <div class="alert alert-danger">
+                        <strong>Whoops!!..</strong>@TempData["Err"]
+                    </div>
+                }
+                <partial name="_Search" />
+                <table class="table table-responsive-sm  table-striped table-bordered  table-sm" style="color:black">
+                    <thead style="background-color:#072652;color:white">
+                        <tr>
+
+                            <th>
+                                Designation
+                            </th>
+
+                            <th colspan="2"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="myUL">
+                        @if (designation_Roles.Count() != 0)
+                        {
+
+                            @foreach (var item in designation_Roles)
+                            {
+
+                                <tr style="font-family:Calibri">
+
+                                    <td style="font-size:large"><b>@item.strDesignation_Role</b></td>
+
+                                    <td>
+                                        <a data-toggle="modal" data-target="#Edit_@item.strId">
+                                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                                            Edit
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a asp-action="" data-toggle="modal" data-target="#Delete_@item.strId" style="color:red" asp-route-id=""><i class="fa fa-trash" aria-hidden="true"></i> <span>Remove</span> </a>
+                                    </td>
+
+                                </tr>
+                                <!-- Modal delete -->
+                                <div id="Edit_@item.strId" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+                                    <div class="modal-dialog">
+
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <div style="font-size:large;font-weight:bold" class="modal-title text-success">
+                                                    <i class="fa fa-pencil" aria-hidden="true"></i> Edit designation/Role Info
+                                                </div>
+                                            </div>
+                                            <form asp-action="EdfitDesignationRole" method="post">
+                                                <input type="hidden" value="@item.strId" name="id" />
+                                                <div class="modal-body">
+
+                                                    <div class="form-group">
+                                                        <input name="strDesignation_Role" value="@item.strDesignation_Role" type="text" required class="form-control" />
+                                                    </div>
+
+
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <div class=" btn-danger btn-sm" data-dismiss="modal">Cancel</div>
+                                                    <input type="submit" id="completebutton" value="SAVE CHANGES" class=" btn-success btn-sm" />
+
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div> <!-- Modal delete -->
+                                <div id="Delete_@item.strId" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+                                    <div class="modal-dialog">
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <div style="font-size:large;font-weight:bold" class="modal-title text-danger">
+                                                    <i class="fa fa-trash" aria-hidden="true"></i> Remove Designation/Role
+                                                </div>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div style="font-size:large;font-weight:bold;text-align:center" class="modal-title">Remove @item.strDesignation_Role </div>
+
+                                                <div class="alert alert-danger">Hey you are about to remove this Designation/Role from the system.Are you sure you want to continue??</div>
+                                            </div>
+                                            <form asp-action="DeleteDesignationRole">
+                                                <input type="hidden" name="id" value="@item.strId" />
+                                                <div class="modal-footer">
+                                                    <div class=" btn-success btn-sm" data-dismiss="modal">Cancel</div>
+                                                    <input type="submit" id="completebutton" value="REMOVE DESIGNATION" class=" btn-danger btn-sm" />
+
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                        }
+                        else
+                        {
+                            <tr>
+                                <td style="text-align:center;color:red" colspan="10">No Designation/Roles  were Found...</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+

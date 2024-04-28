@@ -1,0 +1,126 @@
+﻿
+
+@inject PAYROL_SYSTEM.Interfaces.IUnitOfWork _unitofwork
+@{
+   
+
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+
+
+<div class="container-fluid">
+    <div class="row" style="margin:10px">
+        <div class="col-6">
+            <h1 style="font-weight:bold;font-family:Calibri;color:#072652">Employee</h1>
+
+        </div>
+
+    </div>
+    <div class="row" style="margin:10px">
+        <div class="col-6">
+            <div style="text-align:start;margin-top:8px">
+                <div style="font-size:large">
+                    All Employees Details
+                </div>
+                <div style="font-size:small;color:gray">
+                    List of all employees in ECAN CRF
+                </div>
+            </div>
+
+        </div>
+        <div class="col-6" style="text-align:end">
+            <a asp-action="CreateNewEmployee" asp-controller="Employees" style="background-color:#072652;color:white;padding:10px"><i class="fa fa-plus"></i> Register New  Employee</a>
+
+        </div>
+    </div>
+
+
+    @if (TempData["successs"] != null)
+    {
+        <div class="alert alert-success">
+            <strong>Success!!..</strong>@TempData["successs"]
+        </div>
+    }
+    @if (TempData["Err"] != null)
+    {
+        <div class="alert alert-danger">
+            <strong>Whoops!!..</strong>@TempData["Err"]
+        </div>
+    }
+    <partial name="_Search" />
+    <table class="table table-responsive-sm  table-striped table-bordered  table-sm" style="color:black">
+        <thead style="background-color:#072652;color:white">
+
+            <tr>
+                <th>
+                   Full name
+                </th>
+                <th>
+                   Id No
+                </th>
+                <th>
+                    KRA Pin
+                </th>
+                <th>
+                   Department
+                </th>
+                <th>
+                   Phone No
+                </th>
+                <th>
+                 Active status
+                </th>
+                <th>
+                    Gender
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="myUL">
+            @foreach (var item in await _unitofwork.employeeRepo.GetAll())
+            {
+
+                Departments d = await _unitofwork.departmentRepo.GetById(item.strDetartmentId);
+                var depid = "";
+                if (d != null)
+                {
+                    depid = d.strDepartmentId;
+
+                }
+
+                
+
+                <tr>
+
+                    <td style="font-size:medium"><b>@item.strFullName</b></td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.strIdNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.strIdKRAPIN)
+                    </td>
+                    <td>
+
+                        @depid
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.strPhoneNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.strActive_Status)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.strGender)
+                    </td>
+                    <td>
+                      <a asp-action="EditEmployee" asp-controller="Employees" asp-route-id="@item.strId">Edit</a> |
+                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

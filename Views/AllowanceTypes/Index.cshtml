@@ -2,25 +2,23 @@
 @using Newtonsoft.Json
 @using Microsoft.AspNetCore.Http
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
-@inject  PAYROL_SYSTEM.Interfaces.IUnitOfWork _UnitOfWork
+@inject PAYROL_SYSTEM.Interfaces.IUnitOfWork _unitOfwork
 
 
- 
 
 
 @using PAYROL_SYSTEM.Session;
 <link href="~/Syncfussion/styles/material.css" rel="stylesheet" />
 <script src="~/Syncfussion/scripts/ej2.min.js"></script>
 @{
-    List<Departments> departments = await _UnitOfWork.departmentRepo.GetAll();
-
+    List<Allowance_Type> allowance_Types = await _unitOfwork.allowanceTypeRepo.GetAll();
 
     Layout = "~/Views/Shared/_Dashboard.cshtml";
 }
 <div class="container-fluid">
     <div class="row">
         <div class="col-6">
-            <h1 style="font-weight:bold;font-family:Calibri;color:#072652">Departments</h1>
+            <h1 style="font-weight:bold;font-family:Calibri;color:#072652">Allowance Types</h1>
 
         </div>
 
@@ -32,21 +30,21 @@
             <img src="~/Icons/undraw_Online_payments_re_y8f2.png" style="max-height:200px" class="img-fluid" />
             <div style="padding:8px;margin:2px;background-color:white;overflow:auto;margin-bottom:24px;margin-top:16px; ">
                 <div style="font-size:large">
-                   Add New Department
+                    Add New Allowance Type
                 </div>
                 <div style="font-size:small;color:gray">
-                    add new department into the system
+                    add new Allowance Type into the system
                 </div>
                 <p>
 
                 </p>
-                <form asp-action="CreateDepartment" method="post">
-                   
+                <form asp-action="CreateAllowanceTypes" method="post">
+
                     <div class="form-group">
-                        <input name="strdepa_name" type="text" required placeholder="Department" class="form-control" />
+                        <input name="strAllowanceTypeName" type="text" required placeholder="Allowance type" class="form-control" />
                     </div>
                     <div class="form-group" style="text-align:center;margin-top:24px">
-                        <input type="submit" value="Add  Department" style="background-color:#072652;color:white" class="btn  btn-sm" />
+                        <input type="submit" value="Add  Allowance Type" style="background-color:#072652;color:white" class="btn  btn-sm" />
                     </div>
                 </form>
             </div>
@@ -54,10 +52,10 @@
         <div class="col-sm-8">
             <div style="text-align:start;margin-top:8px">
                 <div style="font-size:large">
-                    All Departments
+                    All Allowance Types
                 </div>
                 <div style="font-size:small;color:gray">
-                    List of all departments in ECAN CRF
+                    List of all Allowance Types in ECAN CRF
                 </div>
             </div>
 
@@ -77,24 +75,24 @@
             <table class="table table-responsive-sm  table-striped table-bordered  table-sm" style="color:black">
                 <thead style="background-color:#072652;color:white">
                     <tr>
-                       
+
                         <th>
-                            Department
+                            Allowance Type
                         </th>
 
                         <th colspan="2"></th>
                     </tr>
                 </thead>
                 <tbody id="myUL">
-                    @if (departments.Count() != 0)
+                    @if (allowance_Types.Count() != 0)
                     {
 
-                        @foreach (var item in departments)
+                        @foreach (var item in allowance_Types)
                         {
 
                             <tr style="font-family:Calibri">
 
-                                <td style="font-size:large"><b>@item.strDepartmentId</b></td>
+                                <td style="font-size:large"><b>@item.strAllowanceTypeName</b></td>
 
                                 <td>
                                     <a data-toggle="modal" data-target="#Edit_@item.strId">
@@ -115,18 +113,18 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <div style="font-size:large;font-weight:bold" class="modal-title text-success">
-                                                <i class="fa fa-pencil" aria-hidden="true"></i> Edit Department Info
+                                                <i class="fa fa-pencil" aria-hidden="true"></i> Edit designation/Role Info
                                             </div>
                                         </div>
-                                        <form asp-action="EdfitDEPARTMENT" method="post">
+                                        <form asp-action="EdfitAllowanceType" method="post">
                                             <input type="hidden" value="@item.strId" name="id" />
                                             <div class="modal-body">
 
                                                 <div class="form-group">
-                                                    <input name="strDepartmentId" value="@item.strDepartmentId" type="text" required class="form-control" />
+                                                    <input name="strAllowanceTypeName" value="@item.strAllowanceTypeName" type="text" required class="form-control" />
                                                 </div>
-                                             
-                                            
+
+
                                             </div>
 
                                             <div class="modal-footer">
@@ -145,19 +143,19 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <div style="font-size:large;font-weight:bold" class="modal-title text-danger">
-                                                <i class="fa fa-trash" aria-hidden="true"></i> Remove Department
+                                                <i class="fa fa-trash" aria-hidden="true"></i> Remove Designation/Role
                                             </div>
                                         </div>
                                         <div class="modal-body">
-                                            <div style="font-size:large;font-weight:bold;text-align:center" class="modal-title">Remove @item.strDepartmentId </div>
+                                            <div style="font-size:large;font-weight:bold;text-align:center" class="modal-title">Remove @item.strAllowanceTypeName </div>
 
-                                            <div class="alert alert-danger">Hey you are about to remove this Department from the system.Are you sure you want to continue??</div>
+                                            <div class="alert alert-danger">Hey you are about to remove this Designation/Role from the system.Are you sure you want to continue??</div>
                                         </div>
-                                        <form asp-action="DeleteDepartment">
+                                        <form asp-action="Deleteallowance_Type">
                                             <input type="hidden" name="id" value="@item.strId" />
                                             <div class="modal-footer">
                                                 <div class=" btn-success btn-sm" data-dismiss="modal">Cancel</div>
-                                                <input type="submit" id="completebutton" value="REMOVE DEPARTMENT" class=" btn-danger btn-sm" />
+                                                <input type="submit" id="completebutton" value="REMOVE DESIGNATION" class=" btn-danger btn-sm" />
 
                                             </div>
                                         </form>
@@ -170,7 +168,7 @@
                     else
                     {
                         <tr>
-                            <td style="text-align:center;color:red" colspan="10">No departments  were Found...</td>
+                            <td style="text-align:center;color:red" colspan="10">No Allowance Types  were Found...</td>
                         </tr>
                     }
                 </tbody>

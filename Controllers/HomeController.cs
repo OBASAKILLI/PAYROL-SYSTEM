@@ -23,7 +23,7 @@ namespace PAYROL_SYSTEM.Controllers
         {
             return View();
         }
-        
+
         public IActionResult Dashboard()
         {
             return View();
@@ -31,8 +31,55 @@ namespace PAYROL_SYSTEM.Controllers
         public async Task<IActionResult> Department()
         {
 
-            return View(await _unitOfWork.departmentRepo.GetAll());
+            return View();
         }
+
+    
+
+
+        public async Task<IActionResult> EdfitDEPARTMENT(string id, string strDepartmentId)
+        {
+            if (id != null)
+            {
+                Departments departments = await _unitOfWork.departmentRepo.GetById(id);
+                if (departments != null)
+                {
+                    departments.strDepartmentId = strDepartmentId;
+                    await _unitOfWork.departmentRepo.Update(departments);
+                    _unitOfWork.save();
+                    TempData["successs"] = $"{strDepartmentId} Updated successfully";
+                }
+            }
+            else
+            {
+                TempData["Err"] = "Something went wrong";
+            }
+            return Redirect("~/Home/Department");
+        }
+
+
+
+        public async Task<IActionResult> DeleteDepartment(string id)
+        {
+            if (id != null)
+            {
+                Departments departments = await _unitOfWork.departmentRepo.GetById(id);
+                if (departments != null)
+                {
+                    await _unitOfWork.departmentRepo.Remove(departments);
+                    _unitOfWork.save();
+                    TempData["Err"] = $"{departments.strDepartmentId} Removed successfully";
+                }
+            }
+            else
+            {
+                TempData["Err"] = "Something went wrong";
+            }
+            return Redirect("~/Home/Department");
+        }
+
+
+
         public IActionResult Employees()
         {
             return View();
@@ -49,7 +96,7 @@ namespace PAYROL_SYSTEM.Controllers
             d.strDepartmentId = strdepa_name;
             d.strId = Guid.NewGuid().ToString();
 
-           await _unitOfWork.departmentRepo.AddNew(d);
+            await _unitOfWork.departmentRepo.AddNew(d);
             _unitOfWork.save();
 
             TempData["successs"] = $"{strdepa_name} was added successfully";
@@ -69,26 +116,26 @@ namespace PAYROL_SYSTEM.Controllers
             // var pass = user.strUserName;
 
             TokenProvider TokenProvider = new TokenProvider(_unitOfWork);
-          
+
             var userToken = TokenProvider.LoginUser(user.strUsername, user.strPassword);
-        
+
             if (userToken != null)
-            {           
+            {
 
 
                 HttpContext.Session.SetString("Name", TokenProvider.GetUserDetails(user.strUsername, user.strPassword).strFullName);
                 HttpContext.Session.SetString("JWToken", userToken);
 
-                 return Redirect("~/Home/Dashboard");
+                return Redirect("~/Home/Dashboard");
                 //return Content("Login Success");
 
             }
             else
             {
                 TempData["Err"] = "Wrong password or username";
-                  return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Home");
 
-               // return Content("Wrong User credentials");
+                // return Content("Wrong User credentials");
             }
 
 

@@ -49,7 +49,7 @@
                 </a>
                 <ul class="treeview-menu" style="display: none">
                     <li>
-                        <a asp-action="Employees" asp-controller="Home" asp-route-Id="">
+                        <a asp-action="Index" asp-controller="Employees" asp-route-Id="">
                             <i class="fa fa-eye" aria-hidden="true"></i>View Employee Info
                         </a>
                     </li>
@@ -71,6 +71,63 @@
                     <li>
                         <a asp-action="Department" asp-controller="Home" asp-route-Id="">
                             <i class="fa fa-eye" aria-hidden="true"></i>View Departments
+                        </a>
+                    </li>
+
+
+                </ul>
+            </li>  
+            <li class="treeview" style="height: auto;color:gray">
+                <a href="#">
+                    <img src="~/Icons/001-booking.png" style="height:24px;width:auto;margin-right:12px" class="img-fluid" />
+
+                    <span style="color:gray;" class="Mennnnu"> Designation/Role  <br /><span style="margin-left:44px;font-size:x-small" class="Mennnnu">View/Manage Designation/Roles </span></span>
+                    <span class="pull-right-container">
+                        <i style="color:gray" class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu" style="display: none">
+                    <li>
+                        <a asp-action="Index" asp-controller="DesignationRole" asp-route-Id="">
+                            <i class="fa fa-eye" aria-hidden="true"></i>View Designation/Roles
+                        </a>
+                    </li>
+
+
+                </ul>
+            </li>
+            <li class="treeview" style="height: auto;color:gray">
+                <a href="#">
+                    <img src="~/Icons/001-booking.png" style="height:24px;width:auto;margin-right:12px" class="img-fluid" />
+
+                    <span style="color:gray;" class="Mennnnu"> Job Groups  <br /><span style="margin-left:44px;font-size:x-small" class="Mennnnu">View/Manage Job Groups </span></span>
+                    <span class="pull-right-container">
+                        <i style="color:gray" class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu" style="display: none">
+                    <li>
+                        <a asp-action="Index" asp-controller="Job_Group" asp-route-Id="">
+                            <i class="fa fa-eye" aria-hidden="true"></i>View Job Groups
+                        </a>
+                    </li>
+
+
+                </ul>
+            </li>
+            <li class="treeview" style="height: auto;color:gray">
+                <a href="#">
+                    <img src="~/Icons/001-booking.png" style="height:24px;width:auto;margin-right:12px" class="img-fluid" />
+
+                    <span style="color:gray;" class="Mennnnu"> Allowance Types  <br /><span style="margin-left:44px;font-size:x-small" class="Mennnnu">View/Manage Allowance Types </span></span>
+                    <span class="pull-right-container">
+                        <i style="color:gray" class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu" style="display: none">
+                    <li>
+                        <a asp-action="Index" asp-controller="AllowanceTypes" asp-route-Id="">
+                            <i class="fa fa-eye" aria-hidden="true"></i>View Allowance Types
                         </a>
                     </li>
 

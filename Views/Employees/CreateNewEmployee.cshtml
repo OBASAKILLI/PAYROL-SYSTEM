@@ -1,0 +1,260 @@
+﻿@model PAYROL_SYSTEM.Models.Employees
+@inject PAYROL_SYSTEM.Interfaces.IUnitOfWork _unitOfWork
+@using Syncfusion.EJ2
+@using Newtonsoft.Json
+<link href="~/Syncfussion/styles/material.css" rel="stylesheet" />
+<script src="~/Syncfussion/scripts/ej2.min.js"></script>
+@{
+    ViewData["Title"] = "CreateNewEmployee";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+    var guid = Guid.NewGuid().ToString();
+
+
+
+    ViewBag.strDepartmentId = await _unitOfWork.departmentRepo.GetAll();
+    ViewBag.strRole = await _unitOfWork.Idesignation_RoleRepo.GetAll();
+    ViewBag.strJobGroupId = await _unitOfWork.jobGroupRepo.GetAll();
+}
+
+<div class="container-fluid" style="font-family:Calibri">
+    <div class="row" style="margin:10px">
+        <div class="col-6">
+            <h1 style="font-weight:bold;font-family:Calibri;color:#072652">Register Employee</h1>
+
+        </div>
+
+
+    </div>
+    <div style="background-color:white;padding:10px;box-shadow: 4px 4px 4px 0 rgba(0,0,0,0.2);">
+        <div class="row" style="margin:10px">
+            <div class="col-6">
+                <div style="text-align:start;margin-top:8px">
+                    <div style="font-size:large">
+                        Employee Information
+                    </div>
+                    <div style="font-size:small;color:gray">
+                        Record all the information for the employee
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-6" style="text-align:end">
+                <a asp-action="Index" asp-controller="Employees" style="background-color:#072652;color:white;padding:10px"><i class="fa fa-eye"></i> All Employees</a>
+
+            </div>
+        </div>
+
+        <form asp-action="CreateNewEmployee" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="strId" value="@guid" type="hidden" class="form-control" />
+            <input asp-for="strSacco_Deductyion" value="0" type="hidden" class="form-control" />
+            <input asp-for="strLoan" value="0" type="hidden" class="form-control" />
+            <input asp-for="strPenalties" value="0" type="hidden" class="form-control" />
+
+            <div class="row">
+                <div class="col-sm-3">
+
+                    <div class="form-group">
+                        <label asp-for="strFullName" class="control-label"></label>
+                        <input asp-for="strFullName" required class="form-control" />
+                        <span asp-validation-for="strFullName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label asp-for="strIdNo" class="control-label"></label>
+                        <input asp-for="strIdNo" required class="form-control" />
+                        <span asp-validation-for="strIdNo" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+
+                    <div class="form-group">
+                        <label asp-for="strNHIF_No" class="control-label"></label>
+                        <input asp-for="strNHIF_No" class="form-control" />
+                        <span asp-validation-for="strNHIF_No" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label asp-for="strNSSF_NO" class="control-label"></label>
+                        <input asp-for="strNSSF_NO" class="form-control" />
+                        <span asp-validation-for="strNSSF_NO" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label asp-for="strEmail" class="control-label"></label>
+                        <input asp-for="strEmail" class="form-control" />
+                        <span asp-validation-for="strEmail" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+
+                    <div class="form-group">
+                        <label asp-for="strIdKRAPIN" class="control-label"></label>
+                        <input asp-for="strIdKRAPIN" required class="form-control" />
+                        <span asp-validation-for="strIdKRAPIN" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label asp-for="strDetartmentId" class="control-label"></label>
+                        <ejs-dropdownlist id="strDetartmentId" required ejs-for="strDetartmentId" name="strDetartmentId" filterBarPlaceholder="Search Department" allowFiltering="true" filtering="strDepartmentId" placeholder="Search Department" popupHeight="300px" dataSource="@ViewBag.strDepartmentId">
+                            <e-dropdownlist-fields text="strDepartmentId" value="strId"></e-dropdownlist-fields>
+                        </ejs-dropdownlist>
+
+
+
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+
+                        <label asp-for="strRole" class="control-label"></label>
+                        <ejs-dropdownlist id="strRole" ejs-for="strRole" required name="strRole" filterBarPlaceholder="Search Role" allowFiltering="true" filtering="strRole" placeholder="Search Role" popupHeight="300px" dataSource="@ViewBag.strRole">
+                            <e-dropdownlist-fields text="strDesignation_Role" value="strId"></e-dropdownlist-fields>
+                        </ejs-dropdownlist>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label asp-for="strPhoneNo" class="control-label"></label>
+                        <input asp-for="strPhoneNo" class="form-control" />
+                        <span asp-validation-for="strPhoneNo" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label asp-for="strDate_Of_Join" class="control-label"></label>
+                        <input asp-for="strDate_Of_Join" required type="date" class="form-control" />
+                        <span asp-validation-for="strDate_Of_Join" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+
+                        <label asp-for="strActive_Status" class="control-label"></label>
+
+                        <select asp-for="strActive_Status" class="form-control">
+                            <option>@Active_Status.Active</option>
+                            <option>@Active_Status.In_Active</option>
+
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label asp-for="strJobGroupId" class="control-label"></label>
+                        <ejs-dropdownlist id="strJobGroupId" required ejs-for="strJobGroupId" name="strJobGroupId" filterBarPlaceholder="Search Job Group" allowFiltering="true" filtering="strJobGroupId" placeholder="Search Job Group" popupHeight="300px" dataSource="@ViewBag.strJobGroupId">
+                            <e-dropdownlist-fields text="strGroupName" value="strId"></e-dropdownlist-fields>
+                        </ejs-dropdownlist>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <script>
+                    function strDepartmentId(e) {
+            var query = new ej.data.Query();
+                        query = (e.text !== '') ? query.where('strDepartmentId', 'contains', e.text, true) : query;
+            e.updateData(@Html.Raw(JsonConvert.SerializeObject(ViewBag.strDepartmentId)), query);
+                }
+
+
+                    function strRole(e) {
+            var query = new ej.data.Query();
+                        query = (e.text !== '') ? query.where('strDesignation_Role', 'contains', e.text, true) : query;
+            e.updateData(@Html.Raw(JsonConvert.SerializeObject(ViewBag.strRole)), query);
+                }
+
+
+                function strJobGroupId(e) {
+            var query = new ej.data.Query();
+                    query = (e.text !== '') ? query.where('strGroupName', 'contains', e.text, true) : query;
+            e.updateData(@Html.Raw(JsonConvert.SerializeObject(ViewBag.strJobGroupId)), query);
+                                    }
+                    </script>
+                    <div class="form-group">
+                        <label asp-for="strGender" class="control-label"></label>
+                        <select asp-for="strGender" class="form-control">
+                            <option>@Gender.Male</option>
+                            <option>@Gender.Female</option>
+
+                        </select>
+                        <span asp-validation-for="strGender" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label asp-for="strReligion" class="control-label"></label>
+                        <input asp-for="strReligion" class="form-control" />
+                        <span asp-validation-for="strReligion" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label asp-for="strDateOfBirth" class="control-label"></label>
+                        <input asp-for="strDateOfBirth" required type="date" class="form-control" />
+                        <span asp-validation-for="strDateOfBirth" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label asp-for="strMarital_Status" class="control-label"></label>
+
+                        <select asp-for="strMarital_Status" class="form-control">
+                            <option>@Marital_Status.Marred</option>
+                            <option>@Marital_Status.Single</option>
+                            <option>@Marital_Status.Rather_not_say</option>
+                        </select>
+                        <span asp-validation-for="strMarital_Status" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label asp-for="strBank_Name" class="control-label"></label>
+
+                        <input asp-for="strBank_Name" class="form-control" />
+                        <span asp-validation-for="strBank_Name" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label asp-for="strAccountNo" class="control-label"></label>
+                        <input asp-for="strAccountNo" class="form-control" />
+                        <span asp-validation-for="strAccountNo" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+
+                    <div class="form-group">
+                        <label asp-for="strStaff_No" class="control-label"></label>
+                        <input asp-for="strStaff_No" class="form-control" />
+                        <span asp-validation-for="strStaff_No" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <input type="submit" value="Register New  Employee" class="btn" style="background-color:#072652;color:white;padding:10px" />
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
