@@ -26,6 +26,7 @@ namespace PAYROL_SYSTEM.Repositories
             Icommissionrepo = new CommissionRepo(_appDbContext);
             allowanceTypeRepo = new AllowanceTypeRepo(_appDbContext);
             allowancesRepo = new AllowanceRepo(_appDbContext);
+            allowancePayment_Transactions = new AllowancePayment_Transactions_Repo(_appDbContext);
 
 
         }
@@ -48,6 +49,8 @@ namespace PAYROL_SYSTEM.Repositories
         public IpaymentRepo IpaymentRepo { get; private set; }
 
         public IUserRepo userRepo { get; private set; }
+
+        public IAllowancePayment_Transactions allowancePayment_Transactions { get; private set; }
 
         public void Dispose()
         {

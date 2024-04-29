@@ -2,7 +2,7 @@
 @using Newtonsoft.Json
 @using Microsoft.AspNetCore.Http
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
-@model Commission
+@model AllowancePayment_Transactions
 
 @inject PAYROL_SYSTEM.Interfaces.IUnitOfWork _unitOfwork
 
@@ -12,15 +12,16 @@
 <link href="~/Syncfussion/styles/material.css" rel="stylesheet" />
 <script src="~/Syncfussion/scripts/ej2.min.js"></script>
 @{
-    List<Commission>  commissions = await _unitOfwork.Icommissionrepo.GetAll();
+    List<AllowancePayment_Transactions> allowancePayment_Transactions = await _unitOfwork.allowancePayment_Transactions.GetAll();
     var GUID = Guid.NewGuid().ToString();
     Layout = "~/Views/Shared/_Dashboard.cshtml";
     ViewBag.strUserId = (await _unitOfwork.employeeRepo.GetAll()).Where(k => k.strActive_Status == Active_Status.Active);
+    ViewBag.strAllowanvcetypeId = await _unitOfwork.allowanceTypeRepo.GetAll();
 }
 <div class="container-fluid">
     <div class="row">
         <div class="col-6">
-            <h1 style="font-weight:bold;font-family:Calibri;color:#072652">Employee Commission</h1>
+            <h1 style="font-weight:bold;font-family:Calibri;color:#072652">Employee Allawances</h1>
         </div>
     </div>
 
@@ -30,15 +31,15 @@
             <img src="~/Icons/undraw_Online_payments_re_y8f2.png" style="max-height:200px" class="img-fluid" />
             <div style="padding:8px;margin:2px;background-color:white;overflow:auto;margin-bottom:24px;margin-top:16px; ">
                 <div style="font-size:large">
-                    Add New Commission Amount
+                    Add New Allawances Amount
                 </div>
                 <div style="font-size:small;color:gray">
-                    add new Commission amount for an Employee
+                    add new allawance amount for an Employee
                 </div>
                 <p>
 
                 </p>
-                <form asp-action="AddCommission" method="post">
+                <form asp-action="AddAllowanceTransaction" method="post">
                     <input type="hidden" asp-for="strId" value="@GUID" />
                     <div class="form-group">
                         <label asp-for="strUserId" class="control-label"></label>
@@ -56,9 +57,7 @@
                         <input asp-for="strAmount" type="number" required placeholder="Amount " class="form-control" />
                     </div>
                     <div class="form-group">
-
                         <label asp-for="strPaidStatus" class="control-label"></label>
-
                         <select asp-for="strPaidStatus" class="form-control">
                             <option>@PaidStatus.Paid</option>
                             <option>@PaidStatus.Pending</option>
@@ -66,17 +65,28 @@
                         </select>
                     </div>
 
+                    <div class="form-group">
+                        <label asp-for="strAllowanvcetypeId" class="control-label"></label>
 
+                        <ejs-dropdownlist id="strAllowanvcetypeId" required ejs-for="strAllowanvcetypeId" name="strAllowanvcetypeId" filterBarPlaceholder="Search Allowance" allowFiltering="true" filtering="strAllowanvcetypeId" placeholder="Search Allowance" popupHeight="300px" dataSource="@ViewBag.strAllowanvcetypeId">
+                            <e-dropdownlist-fields text="strAllowanceTypeName" value="strId"></e-dropdownlist-fields>
+                        </ejs-dropdownlist>
+                    </div>
                     <script>
                         function strUserId(e) {
             var query = new ej.data.Query();
                             query = (e.text !== '') ? query.where('strFullName', 'contains', e.text, true) : query;
             e.updateData(@Html.Raw(JsonConvert.SerializeObject(ViewBag.strUserId)), query);
+                        }
+                        function strAllowanvcetypeId(e) {
+            var query = new ej.data.Query();
+                            query = (e.text !== '') ? query.where('strAllowanceTypeName', 'contains', e.text, true) : query;
+            e.updateData(@Html.Raw(JsonConvert.SerializeObject(ViewBag.strAllowanvcetypeId)), query);
                 }
                     </script>
 
                     <div class="form-group" style="text-align:center;margin-top:24px">
-                        <input type="submit" value="Record Commission" style="background-color:#072652;color:white" class="btn  btn-sm" />
+                        <input type="submit" value="Record Allowance" style="background-color:#072652;color:white" class="btn  btn-sm" />
                     </div>
                 </form>
             </div>
@@ -84,10 +94,10 @@
         <div class="col-sm-8">
             <div style="text-align:start;margin-top:8px">
                 <div style="font-size:large">
-                    All Commission OverTime amount
+                    All Allowance OverTime amount
                 </div>
                 <div style="font-size:small;color:gray">
-                    List of all Commission OverTime amount
+                    List of all Allawance  amount
                 </div>
             </div>
 
@@ -111,30 +121,36 @@
                         <th>
                             Employee
                         </th>
+
                         <th>
                             Date
                         </th>
+                        <th>Type</th>
                         <th>Amount</th>
                         <th>Paid Status</th>
-
 
                         <th colspan="2">Action</th>
                     </tr>
                 </thead>
                 <tbody id="myUL">
-                    @if (commissions.Count != 0)
+                    @if (allowancePayment_Transactions.Count != 0)
                     {
 
-                        @foreach (var item in commissions)
+                        @foreach (var item in allowancePayment_Transactions)
                         {
                             var Employeename = "";
+                            var allowanceTYPE = "";
                             Employees e = await _unitOfwork.employeeRepo.GetById(item.strUserId);
                             if (e != null)
                             {
                                 Employeename = e.strFullName;
 
                             }
-
+                            Allowance_Type allowance_Type = await _unitOfwork.allowanceTypeRepo.GetById(item.strAllowanvcetypeId);
+                            if (allowance_Type != null)
+                            {
+                                allowanceTYPE = allowance_Type.strAllowanceTypeName;
+                            }
                             <tr style="font-family:Calibri">
 
                                 <td style="font-size:large"><b>@Employeename</b></td>
@@ -142,6 +158,7 @@
                                 <td>
                                     @item.strDate.ToString("ddd , dd/MMM/yy")
                                 </td>
+                                <td>@allowanceTYPE</td>
                                 <td>@item.strAmount</td>
                                 <td>@item.strPaidStatus</td>
 
@@ -164,12 +181,13 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <div style="font-size:large;font-weight:bold" class="modal-title text-success">
-                                                <i class="fa fa-pencil" aria-hidden="true"></i> Edit Commission Info
+                                                <i class="fa fa-pencil" aria-hidden="true"></i> Edit Allowance Info
                                             </div>
                                         </div>
-                                        <form asp-action="UpdateCommission" method="post">
+                                        <form asp-action="EditAllowanceTransactions" method="post">
                                             <input asp-for="strId" type="hidden" value="@item.strId" />
                                             <input asp-for="strUserId" type="hidden" value="@item.strUserId" />
+                                            <input asp-for="strAllowanvcetypeId" type="hidden" value="@item.strAllowanvcetypeId" />
                                             <input type="hidden" name="Employeename" value="@Employeename" />
                                             <div class="modal-body">
 
@@ -192,7 +210,13 @@
 
                                                     </select>
                                                 </div>
+                                                @*<div class="form-group">
+                                                    <label asp-for="strAllowanvcetypeId" class="control-label"></label>
 
+                                                    <ejs-dropdownlist id="@item.strId" required ejs-for="strAllowanvcetypeId" name="@item.strId" filterBarPlaceholder="Search Allowance" allowFiltering="true" filtering="strAllowanvcetypeId" placeholder="Search Allowance" popupHeight="300px" dataSource="@ViewBag.strAllowanvcetypeId">
+                                                        <e-dropdownlist-fields text="strAllowanceTypeName" value="strId"></e-dropdownlist-fields>
+                                                    </ejs-dropdownlist>
+                                                </div>*@
 
                                             </div>
 
@@ -213,20 +237,20 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <div style="font-size:large;font-weight:bold" class="modal-title text-danger">
-                                                <i class="fa fa-trash" aria-hidden="true"></i> Remove Overtime
+                                                <i class="fa fa-trash" aria-hidden="true"></i> Remove Employee Allowance
                                             </div>
                                         </div>
                                         <div class="modal-body">
-                                            <div style="font-size:large;font-weight:bold;text-align:center" class="modal-title">Remove Commission amoun of @item.strAmount for @Employeename </div>
+                                            <div style="font-size:large;font-weight:bold;text-align:center" class="modal-title">Remove Allowance amoun of @item.strAmount for @Employeename </div>
 
                                             <div class="alert alert-danger">Hey you are about to remove this Amount.Are you sure you want to continue??</div>
                                         </div>
-                                        <form asp-action="RemoveCommission">
+                                        <form asp-action="RemoveAllowanceTransaction">
                                             <input type="hidden" name="id" value="@item.strId" />
                                             <input type="hidden" name="Employeename" value="@Employeename" />
                                             <div class="modal-footer">
                                                 <div class=" btn-success btn-sm" data-dismiss="modal">Cancel</div>
-                                                <input type="submit" id="completebutton" value="REMOVE COMMISSION" class=" btn-danger btn-sm" />
+                                                <input type="submit" id="completebutton" value="REMOVE ALLOWANCE" class=" btn-danger btn-sm" />
 
                                             </div>
                                         </form>
@@ -239,7 +263,7 @@
                     else
                     {
                         <tr>
-                            <td style="text-align:center;color:red" colspan="10">No Employee commission  were Found...</td>
+                            <td style="text-align:center;color:red" colspan="10">No Employee allowance  were Found...</td>
                         </tr>
                     }
                 </tbody>

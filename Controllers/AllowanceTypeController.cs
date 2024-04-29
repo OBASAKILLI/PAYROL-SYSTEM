@@ -23,11 +23,12 @@ namespace PAYROL_SYSTEM.Controllers
 
 
 
-        public async Task<IActionResult> CreateAllowanceTypes(string strAllowanceTypeName)
+        public async Task<IActionResult> CreateAllowanceTypes(string strAllowanceTypeName,double strSalary_Rate)
         {
             Allowance_Type d = new Allowance_Type();
             d.strAllowanceTypeName = strAllowanceTypeName;
             d.strId = Guid.NewGuid().ToString();
+            d.strSalary_Rate = strSalary_Rate;
 
             await _unitOfWork.allowanceTypeRepo.AddNew(d);
             _unitOfWork.save();
@@ -37,7 +38,7 @@ namespace PAYROL_SYSTEM.Controllers
         }
 
 
-        public async Task<IActionResult> EdfitAllowanceType(string id, string strAllowanceTypeName)
+        public async Task<IActionResult> EdfitAllowanceType(string id, string strAllowanceTypeName,double strSalary_Rate)
         {
             if (id != null)
             {
@@ -45,6 +46,8 @@ namespace PAYROL_SYSTEM.Controllers
                 if (allowance_Type != null)
                 {
                     allowance_Type.strAllowanceTypeName = strAllowanceTypeName;
+                    allowance_Type.strSalary_Rate = strSalary_Rate;
+
                     await _unitOfWork.allowanceTypeRepo.Update(allowance_Type);
                     _unitOfWork.save();
                     TempData["successs"] = $"{strAllowanceTypeName} Updated successfully";

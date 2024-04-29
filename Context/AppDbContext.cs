@@ -22,6 +22,7 @@ namespace PAYROL_SYSTEM.Context
         public DbSet<PAYROL_SYSTEM.Models.Job_Groups> Job_Groups { get; set; }
         public DbSet<PAYROL_SYSTEM.Models.Allowance_Type> GetAllowance_Types { get; set; }
         public DbSet<PAYROL_SYSTEM.Models.PaymentHistory> PaymentHistories { get; set; }
+        public DbSet<PAYROL_SYSTEM.Models.AllowancePayment_Transactions> allowancePayment_Transactions { get; set; }
     }
 
 }

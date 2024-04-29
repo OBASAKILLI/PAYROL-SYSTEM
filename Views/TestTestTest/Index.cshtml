@@ -16,7 +16,21 @@
             <th>
                 @Html.DisplayNameFor(model => model.strFullName)
             </th>
-          
+            <th>
+                @Html.DisplayNameFor(model => model.strIdNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.strNHIF_No)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.strNSSF_NO)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.strEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.strIdKRAPIN)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.strDetartmentId)
             </th>
@@ -47,7 +61,24 @@
             <th>
                 @Html.DisplayNameFor(model => model.strMarital_Status)
             </th>
-           
+            <th>
+                @Html.DisplayNameFor(model => model.strBank_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.strAccountNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.strStaff_No)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.strSacco_Deductyion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.strLoan)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.strPenalties)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -57,7 +88,21 @@
             <td>
                 @Html.DisplayFor(modelItem => item.strFullName)
             </td>
-          
+            <td>
+                @Html.DisplayFor(modelItem => item.strIdNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.strNHIF_No)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.strNSSF_NO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.strEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.strIdKRAPIN)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.strDetartmentId)
             </td>
@@ -88,7 +133,24 @@
             <td>
                 @Html.DisplayFor(modelItem => item.strMarital_Status)
             </td>
-          
+            <td>
+                @Html.DisplayFor(modelItem => item.strBank_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.strAccountNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.strStaff_No)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.strSacco_Deductyion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.strLoan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.strPenalties)
+            </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.strId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.strId">Details</a> |

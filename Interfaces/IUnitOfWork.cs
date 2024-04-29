@@ -17,6 +17,7 @@ namespace PAYROL_SYSTEM.Interfaces
         IOverTimeRepo overTimeRepo { get; }
         IpaymentRepo IpaymentRepo { get; }
         IUserRepo userRepo { get; }
+        IAllowancePayment_Transactions allowancePayment_Transactions { get; }
         int save();
 
     }

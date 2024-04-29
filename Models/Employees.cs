@@ -66,7 +66,16 @@ namespace PAYROL_SYSTEM.Models
         [DisplayName("Penalties")]
         public double strPenalties { get; set; }
     }
+    public class Allowance
+    {
+        public string strAllowancetypeId { get; set; }
+        public bool strIsChecked { get; set; }
 
+    }
+    public class CheckedAllowanceType
+    {
+        public List<Allowance> checkedAllowances { get; set; }
+    }
     public enum Gender
     {
         Male,

@@ -26,13 +26,13 @@ namespace PAYROL_SYSTEM.Controllers
         }
         public async Task<IActionResult> OverTime()
         {
-            
+
 
             return View();
         }
         public async Task<IActionResult> Commission()
         {
-            
+
 
             return View();
         }
@@ -99,12 +99,12 @@ namespace PAYROL_SYSTEM.Controllers
             return Redirect("~/Employees/Commission");
         }
         [HttpPost]
-        public async Task<IActionResult> UpdateOverTime(OverTime overTime,string Employeename)
+        public async Task<IActionResult> UpdateOverTime(OverTime overTime, string Employeename)
         {
-         
+
             if (overTime != null)
             {
-               // return Json(overTime);
+                // return Json(overTime);
                 await _unitOfWork.overTimeRepo.Update(overTime);
                 _unitOfWork.save();
                 TempData["successs"] = $"Overtime amount of {overTime.strAmount} for {Employeename}  was Updated successfully";
@@ -116,13 +116,14 @@ namespace PAYROL_SYSTEM.Controllers
 
 
             return Redirect("~/Employees/OverTime");
-        } [HttpPost]
-        public async Task<IActionResult> UpdateCommission(Commission commission,string Employeename)
+        }
+        [HttpPost]
+        public async Task<IActionResult> UpdateCommission(Commission commission, string Employeename)
         {
-         
+
             if (commission != null)
             {
-               // return Json(overTime);
+                // return Json(overTime);
                 await _unitOfWork.Icommissionrepo.Update(commission);
                 _unitOfWork.save();
                 TempData["successs"] = $"Commission amount of {commission.strAmount} for {Employeename}  was Updated successfully";
@@ -138,12 +139,22 @@ namespace PAYROL_SYSTEM.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> CreateNewEmployee(Employees employees)
+        public async Task<IActionResult> CreateNewEmployee(Employees employees, CheckedAllowanceType checkedAllowanceType)
         {
-            //return Json(employees);
+
             if (employees != null)
             {
                 await _unitOfWork.employeeRepo.AddNew(employees);
+
+                foreach (var data in checkedAllowanceType.checkedAllowances.Where(k => k.strIsChecked == true))
+                {
+                    Allowances allowances = new Allowances();
+                    allowances.strId = Guid.NewGuid().ToString();
+                    allowances.strUserId = employees.strId;
+                    allowances.strAllowanceId = data.strAllowancetypeId;
+                    await _unitOfWork.allowancesRepo.AddNew(allowances);
+                }
+
                 _unitOfWork.save();
                 TempData["successs"] = $"{employees.strFullName} was added successfully into the system";
             }
@@ -198,8 +209,9 @@ namespace PAYROL_SYSTEM.Controllers
             }
 
             return Redirect("~/Employees/Index");
-        } [HttpPost]
-        public async Task<IActionResult> RemoveOverTime(string id,string Employeename)
+        }
+        [HttpPost]
+        public async Task<IActionResult> RemoveOverTime(string id, string Employeename)
         {
             //   return Json(employees);
             if (id != null)
@@ -207,7 +219,7 @@ namespace PAYROL_SYSTEM.Controllers
                 OverTime e = await _unitOfWork.overTimeRepo.GetById(id);
                 if (e != null)
                 {
-                   
+
                     await _unitOfWork.overTimeRepo.Remove(e);
                     _unitOfWork.save();
                     TempData["Err"] = $"Overtime amount of {e.strAmount} for {Employeename}  was Removed";
@@ -225,7 +237,7 @@ namespace PAYROL_SYSTEM.Controllers
             return Redirect("~/Employees/OverTime");
         }
         [HttpPost]
-        public async Task<IActionResult> RemoveCommission(string id,string Employeename)
+        public async Task<IActionResult> RemoveCommission(string id, string Employeename)
         {
             //   return Json(employees);
             if (id != null)
@@ -233,7 +245,7 @@ namespace PAYROL_SYSTEM.Controllers
                 Commission e = await _unitOfWork.Icommissionrepo.GetById(id);
                 if (e != null)
                 {
-                   
+
                     await _unitOfWork.Icommissionrepo.Remove(e);
                     _unitOfWork.save();
                     TempData["Err"] = $"Commission amount of {e.strAmount} for {Employeename}  was Removed";

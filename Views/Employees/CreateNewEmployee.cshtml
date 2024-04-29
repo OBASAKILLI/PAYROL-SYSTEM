@@ -44,7 +44,7 @@
             </div>
         </div>
 
-        <form asp-action="CreateNewEmployee" method="post">
+        <form asp-action="CreateNewEmployee" method="post" style="color:gray">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input asp-for="strId" value="@guid" type="hidden" class="form-control" />
             <input asp-for="strSacco_Deductyion" value="0" type="hidden" class="form-control" />
@@ -247,9 +247,15 @@
 
                 </div>
                 <div class="col-sm-3">
-                    <div class="form-group">
-                        <input type="submit" value="Register New  Employee" class="btn" style="background-color:#072652;color:white;padding:10px" />
-                    </div>
+                    <div>Select that applies to this Employee</div>
+                    <partial name="_CheckboxList" />
+                    
+                   
+                </div>
+
+
+                <div class="form-group">
+                    <input type="submit" value="Register New  Employee" class="btn" style="background-color:#072652;color:white;padding:10px" />
                 </div>
             </div>
 

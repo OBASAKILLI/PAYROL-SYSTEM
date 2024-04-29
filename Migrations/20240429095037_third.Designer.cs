@@ -2,43 +2,22 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PAYROL_SYSTEM.Context;
 
 namespace PAYROL_SYSTEM.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240429095037_third")]
+    partial class third
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
-
-            modelBuilder.Entity("PAYROL_SYSTEM.Models.AllowancePayment_Transactions", b =>
-                {
-                    b.Property<string>("strId")
-                        .ValueGeneratedOnAdd()
-                        .HasMaxLength(50);
-
-                    b.Property<string>("strAllowanvcetypeId")
-                        .IsRequired();
-
-                    b.Property<double>("strAmount");
-
-                    b.Property<DateTime>("strDate");
-
-                    b.Property<int>("strPaidStatus");
-
-                    b.Property<string>("strUserId")
-                        .IsRequired();
-
-                    b.HasKey("strId");
-
-                    b.ToTable("allowancePayment_Transactions");
-                });
 
             modelBuilder.Entity("PAYROL_SYSTEM.Models.Allowance_Type", b =>
                 {
