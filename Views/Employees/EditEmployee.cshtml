@@ -44,17 +44,17 @@
             </div>
         </div>
 
-        <form asp-action="" method="post">
+        <form asp-action="EditEmployee" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-
+            <input asp-for="strId" type="hidden" />
 
             <div class="row">
                 <div class="col-sm-3">
 
                     <div class="form-group">
                         <label asp-for="strFullName" class="control-label"></label>
-                        <input asp-for="strFullName" value="@Model.strFullName" required class="form-control" />
+                        <input asp-for="strFullName" required class="form-control" />
                         <span asp-validation-for="strFullName" class="text-danger"></span>
                     </div>
                 </div>
@@ -253,8 +253,8 @@
                 </div>
             </div>
 
-            
-         
+
+
 
             <div class="row">
                 <div class="col-sm-3">
@@ -274,12 +274,12 @@
                 </div>
                 <div class="col-sm-3">
 
-                   
+
 
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <input type="submit" value="Register New  Employee" class="btn" style="background-color:#072652;color:white;padding:10px" />
+                        <input type="submit" value="Update Details" class="btn" style="background-color:#072652;color:white;padding:10px" />
                     </div>
                 </div>
             </div>

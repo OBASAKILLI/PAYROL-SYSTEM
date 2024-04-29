@@ -50,7 +50,17 @@
                 <ul class="treeview-menu" style="display: none">
                     <li>
                         <a asp-action="Index" asp-controller="Employees" asp-route-Id="">
-                            <i class="fa fa-eye" aria-hidden="true"></i>View Employee Info
+                            <i class="fa fa-eye" aria-hidden="true"></i>View all Employees
+                        </a>
+                    </li> 
+                    <li>
+                        <a asp-action="OverTime" asp-controller="Employees" asp-route-Id="">
+                            <i class="fa fa-eye" aria-hidden="true"></i>Employee OverTime
+                        </a>
+                    </li> 
+                    <li>
+                        <a asp-action="Commission" asp-controller="Employees" asp-route-Id="">
+                            <i class="fa fa-eye" aria-hidden="true"></i>Employee Commission
                         </a>
                     </li>
 

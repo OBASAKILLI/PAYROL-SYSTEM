@@ -1,0 +1,251 @@
+﻿@using Syncfusion.EJ2
+@using Newtonsoft.Json
+@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@model OverTime 
+
+@inject PAYROL_SYSTEM.Interfaces.IUnitOfWork _unitOfwork
+
+
+
+@using PAYROL_SYSTEM.Session;
+<link href="~/Syncfussion/styles/material.css" rel="stylesheet" />
+<script src="~/Syncfussion/scripts/ej2.min.js"></script>
+@{
+    List<OverTime> overTimes = await _unitOfwork.overTimeRepo.GetAll();
+    var GUID = Guid.NewGuid().ToString();
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+    ViewBag.strUserId = (await _unitOfwork.employeeRepo.GetAll()).Where(k => k.strActive_Status == Active_Status.Active);
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-6">
+            <h1 style="font-weight:bold;font-family:Calibri;color:#072652">Employee Overtime</h1>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-4" style="background-color:white">
+            <img src="~/Icons/undraw_Online_payments_re_y8f2.png" style="max-height:200px" class="img-fluid" />
+            <div style="padding:8px;margin:2px;background-color:white;overflow:auto;margin-bottom:24px;margin-top:16px; ">
+                <div style="font-size:large">
+                    Add New Overtime Amount
+                </div>
+                <div style="font-size:small;color:gray">
+                    add new Overtime amount for an Employee
+                </div>
+                <p>
+
+                </p>
+                <form asp-action="AddOverTime" method="post">
+                    <input type="hidden" asp-for="strId" value="@GUID" />
+                    <div class="form-group">
+                        <label asp-for="strUserId" class="control-label"></label>
+
+                        <ejs-dropdownlist id="strUserId" required ejs-for="strUserId" name="strUserId" filterBarPlaceholder="Search Employee" allowFiltering="true" filtering="strUserId" placeholder="Search Employee" popupHeight="300px" dataSource="@ViewBag.strUserId">
+                            <e-dropdownlist-fields text="strFullName" value="strId"></e-dropdownlist-fields>
+                        </ejs-dropdownlist>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="strDate" class="control-label"></label>
+                        <input asp-for="strDate" type="date" required class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="strAmount" class="control-label"></label>
+                        <input asp-for="strAmount" type="number" required placeholder="Amount " class="form-control" />
+                    </div>
+                    <div class="form-group">
+
+                        <label asp-for="strPaidStatus" class="control-label"></label>
+
+                        <select asp-for="strPaidStatus" class="form-control">
+                            <option>@PaidStatus.Paid</option>
+                            <option>@PaidStatus.Pending</option>
+
+                        </select>
+                    </div>
+
+
+                    <script>
+                        function strUserId(e) {
+            var query = new ej.data.Query();
+                            query = (e.text !== '') ? query.where('strFullName', 'contains', e.text, true) : query;
+            e.updateData(@Html.Raw(JsonConvert.SerializeObject(ViewBag.strUserId)), query);
+                }
+                    </script>
+
+                    <div class="form-group" style="text-align:center;margin-top:24px">
+                        <input type="submit" value="Record OverTime" style="background-color:#072652;color:white" class="btn  btn-sm" />
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div style="text-align:start;margin-top:8px">
+                <div style="font-size:large">
+                    All Employee OverTime amount
+                </div>
+                <div style="font-size:small;color:gray">
+                    List of all Employee OverTime amount
+                </div>
+            </div>
+
+            @if (TempData["successs"] != null)
+            {
+                <div class="alert alert-success">
+                    <strong>Success!!..</strong>@TempData["successs"]
+                </div>
+            }
+            @if (TempData["Err"] != null)
+            {
+                <div class="alert alert-danger">
+                    <strong>Whoops!!..</strong>@TempData["Err"]
+                </div>
+            }
+            <partial name="_Search" />
+            <table class="table table-responsive-sm  table-striped table-bordered  table-sm" style="color:black">
+                <thead style="background-color:#072652;color:white">
+                    <tr>
+
+                        <th>
+                            Employee
+                        </th>
+                        <th>
+                            Date
+                        </th>
+                        <th>Amount</th>
+                        <th>Paid Status</th>
+
+
+                        <th colspan="2">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="myUL">
+                    @if (overTimes.Count != 0)
+                    {
+
+                        @foreach (var item in overTimes)
+                        {
+                            var Employeename = "";
+                            Employees e = await _unitOfwork.employeeRepo.GetById(item.strUserId);
+                            if (e != null)
+                            {
+                                Employeename = e.strFullName;
+
+                            }
+
+                            <tr style="font-family:Calibri">
+
+                                <td style="font-size:large"><b>@Employeename</b></td>
+
+                                <td>
+                                    @item.strDate.ToString("ddd , dd/MMM/yy")
+                                </td>
+                                <td>@item.strAmount</td>
+                                <td>@item.strPaidStatus</td>
+
+                                <td>
+                                    <a data-toggle="modal" data-target="#Edit_@item.strId">
+                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                        Edit
+                                    </a>
+                                </td>
+                                <td>
+                                    <a asp-action="" data-toggle="modal" data-target="#Delete_@item.strId" style="color:red" asp-route-id=""><i class="fa fa-trash" aria-hidden="true"></i> <span>Remove</span> </a>
+                                </td>
+
+                            </tr>
+                            <!-- Modal delete -->
+                            <div id="Edit_@item.strId" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+                                <div class="modal-dialog">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <div style="font-size:large;font-weight:bold" class="modal-title text-success">
+                                                <i class="fa fa-pencil" aria-hidden="true"></i> Edit Overtime Info
+                                            </div>
+                                        </div>
+                                        <form asp-action="UpdateOverTime" method="post">
+                                            <input asp-for="strId" type="hidden" value="@item.strId" />
+                                            <input asp-for="strUserId" type="hidden" value="@item.strUserId" /> 
+                                            <input  type="hidden" name="Employeename" value="@Employeename" />
+                                            <div class="modal-body">
+
+
+                                                <div class="form-group">
+                                                    <label asp-for="strDate" class="control-label"></label>
+                                                    <input asp-for="strDate" type="date" required class="form-control" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label asp-for="strAmount" class="control-label"></label>
+                                                    <input asp-for="strAmount" value="@item.strAmount" type="number" required placeholder="Amount " class="form-control" />
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <label asp-for="strPaidStatus" class="control-label"></label>
+
+                                                    <select asp-for="strPaidStatus" class="form-control">
+                                                        <option>@PaidStatus.Paid</option>
+                                                        <option>@PaidStatus.Pending</option>
+
+                                                    </select>
+                                                </div>
+
+
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <div class=" btn-danger btn-sm" data-dismiss="modal">Cancel</div>
+                                                <input type="submit" id="completebutton" value="SAVE CHANGES" class=" btn-success btn-sm" />
+
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- Modal delete -->
+                            <div id="Delete_@item.strId" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+                                <div class="modal-dialog">
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <div style="font-size:large;font-weight:bold" class="modal-title text-danger">
+                                                <i class="fa fa-trash" aria-hidden="true"></i> Remove Overtime
+                                            </div>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div style="font-size:large;font-weight:bold;text-align:center" class="modal-title">Remove overtime amoun of @item.strAmount for @Employeename </div>
+
+                                            <div class="alert alert-danger">Hey you are about to remove this Amount.Are you sure you want to continue??</div>
+                                        </div>
+                                        <form asp-action="RemoveOverTime">
+                                            <input type="hidden" name="id" value="@item.strId" />
+                                            <input type="hidden" name="Employeename" value="@Employeename" />
+                                            <div class="modal-footer">
+                                                <div class=" btn-success btn-sm" data-dismiss="modal">Cancel</div>
+                                                <input type="submit" id="completebutton" value="REMOVE OVERTIME" class=" btn-danger btn-sm" />
+
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    }
+                    else
+                    {
+                        <tr>
+                            <td style="text-align:center;color:red" colspan="10">No Employee overtime  were Found...</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+

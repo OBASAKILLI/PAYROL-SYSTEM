@@ -45,3 +45,5 @@ D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\Test
 D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\TestTestTest\Edit.g.cshtml.cs
 D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\TestTestTest\Index.g.cshtml.cs
 D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\Employees\EditEmployee.g.cshtml.cs
+D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\Employees\OverTime.g.cshtml.cs
+D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\Employees\Commission.g.cshtml.cs

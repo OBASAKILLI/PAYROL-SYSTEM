@@ -40,7 +40,7 @@ namespace PAYROL_SYSTEM.Models
         public DateTime strDate_Of_Join { get; set; }
         [Required]
         [DisplayName("Active Status")]
-        public bool strActive_Status { get; set; }
+        public Active_Status strActive_Status { get; set; }
         [Required]
         [DisplayName("Job Group")]
         public string strJobGroupId { get; set; }

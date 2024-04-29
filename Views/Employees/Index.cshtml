@@ -74,11 +74,11 @@
                 <th>
                     Gender
                 </th>
-                <th></th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody id="myUL">
-            @foreach (var item in await _unitofwork.employeeRepo.GetAll())
+            @foreach (var item in (await _unitofwork.employeeRepo.GetAll()).OrderBy(k=>k.strActive_Status))
             {
 
                 Departments d = await _unitofwork.departmentRepo.GetById(item.strDetartmentId);
@@ -88,12 +88,22 @@
                     depid = d.strDepartmentId;
 
                 }
+                var background = "";
+                var TextColor = "";
+                if (item.strActive_Status == Active_Status.In_Active)
+                {
+                    background = "#fca9a9";
+                    TextColor = "#a90505";
+                }
+                <tr style="color:@TextColor ; background-color:@background;">
 
-                
+                    <td >
+                        <b class="text-capitalize">
+                            <img src="/Icons/ProfilePic.png" style="height:30px;width:30px" />
+                            <span class="text-uppercase" style="margin-left:8px">@item.strFullName</span>
+                        </b>
 
-                <tr>
-
-                    <td style="font-size:medium"><b>@item.strFullName</b></td>
+                    </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.strIdNo)
                     </td>
@@ -115,11 +125,42 @@
                         @Html.DisplayFor(modelItem => item.strGender)
                     </td>
                     <td>
-                      <a asp-action="EditEmployee" asp-controller="Employees" asp-route-id="@item.strId">Edit</a> |
-                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                        <a asp-action="EditEmployee" asp-controller="Employees" asp-route-id="@item.strId">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                         Edit info
+                        </a>
+                        |
+                       
+                        <a asp-action="" data-toggle="modal" data-target="#Delete_@item.strId" style="color:red" asp-route-id=""><i class="fa fa-trash" aria-hidden="true"></i> <span>Remove</span> </a>
                     </td>
                 </tr>
+
+                <!-- Modal delete -->
+                <div id="Delete_@item.strId" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div style="font-size:large;font-weight:bold" class="modal-title text-danger">
+                                    <i class="fa fa-trash" aria-hidden="true"></i> Remove Employee
+                                </div>
+                            </div>
+                            <div class="modal-body">
+                                <div style="font-size:large;font-weight:bold;text-align:center" class="modal-title">Remove @item.strFullName </div>
+
+                                <div class="alert alert-danger">Hey you are about to remove this Employee from the system.Are you sure you want to continue??</div>
+                            </div>
+                            <form asp-action="RemoveEMployee">
+                                <input type="hidden" name="id" value="@item.strId" />
+                                <div class="modal-footer">
+                                    <div class=" btn-success btn-sm" data-dismiss="modal">Cancel</div>
+                                    <input type="submit" id="completebutton" value="REMOVE EMPLOYEE" class=" btn-danger btn-sm" />
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             }
         </tbody>
     </table>
