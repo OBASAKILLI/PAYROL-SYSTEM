@@ -19,9 +19,9 @@ namespace PAYROL_SYSTEM.Models
         [Required]
         [DisplayName("Id No")]
         public string strIdNo { get; set; }
-        [DisplayName("NHIF")]
+        [DisplayName("NHIF NO")]
         public string strNHIF_No { get; set; }
-        [DisplayName("NSSF")]
+        [DisplayName("NSSF No")]
         public string strNSSF_NO { get; set; }
         [DisplayName("Email")]
         public string strEmail { get; set; }
@@ -53,7 +53,7 @@ namespace PAYROL_SYSTEM.Models
         public DateTime strDateOfBirth { get; set; }
         [DisplayName("Marital Status")]
         public Marital_Status strMarital_Status { get; set; }
-        [DisplayName("Bank")]
+        [DisplayName("Bank Name")]
         public string strBank_Name { get; set; }
         [DisplayName("Acc No")]
         public string strAccountNo { get; set; }

@@ -27,7 +27,7 @@ namespace PAYROL_SYSTEM.Repositories
             allowanceTypeRepo = new AllowanceTypeRepo(_appDbContext);
             allowancesRepo = new AllowanceRepo(_appDbContext);
             allowancePayment_Transactions = new AllowancePayment_Transactions_Repo(_appDbContext);
-
+            payslipInfo = new PayslipMonthlyInfoRepo(_appDbContext);
 
         }
         public IAllowancesRepo allowancesRepo { get; private set; }
@@ -50,7 +50,11 @@ namespace PAYROL_SYSTEM.Repositories
 
         public IUserRepo userRepo { get; private set; }
 
+       
+
         public IAllowancePayment_Transactions allowancePayment_Transactions { get; private set; }
+
+        public IPayslipInfo payslipInfo { get; private set; }
 
         public void Dispose()
         {

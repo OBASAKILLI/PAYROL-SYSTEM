@@ -3,19 +3,32 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PAYROL_SYSTEM.Migrations
 {
-    public partial class first : Migration
+    public partial class sixthth : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Allowances",
+                name: "allowancePayment_Transactions",
                 columns: table => new
                 {
                     strId = table.Column<string>(maxLength: 50, nullable: false),
                     strUserId = table.Column<string>(nullable: false),
                     strDate = table.Column<DateTime>(nullable: false),
                     strAmount = table.Column<double>(nullable: false),
-                    strPaidStatus = table.Column<bool>(nullable: false),
+                    strPaidStatus = table.Column<int>(nullable: false),
+                    strAllowanvcetypeId = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_allowancePayment_Transactions", x => x.strId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Allowances",
+                columns: table => new
+                {
+                    strId = table.Column<string>(maxLength: 50, nullable: false),
+                    strUserId = table.Column<string>(nullable: false),
                     strAllowanceId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -31,7 +44,7 @@ namespace PAYROL_SYSTEM.Migrations
                     strUserId = table.Column<string>(nullable: false),
                     strDate = table.Column<DateTime>(nullable: false),
                     strAmount = table.Column<double>(nullable: false),
-                    strPaidStatus = table.Column<bool>(nullable: false)
+                    strPaidStatus = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -77,12 +90,12 @@ namespace PAYROL_SYSTEM.Migrations
                     strRole = table.Column<string>(nullable: false),
                     strPhoneNo = table.Column<string>(nullable: true),
                     strDate_Of_Join = table.Column<DateTime>(nullable: false),
-                    strActive_Status = table.Column<bool>(nullable: false),
+                    strActive_Status = table.Column<int>(nullable: false),
                     strJobGroupId = table.Column<string>(nullable: false),
-                    strGender = table.Column<string>(nullable: true),
+                    strGender = table.Column<int>(nullable: false),
                     strReligion = table.Column<string>(nullable: true),
                     strDateOfBirth = table.Column<DateTime>(nullable: false),
-                    strMarital_Status = table.Column<string>(nullable: true),
+                    strMarital_Status = table.Column<int>(nullable: false),
                     strBank_Name = table.Column<string>(nullable: true),
                     strAccountNo = table.Column<string>(nullable: true),
                     strStaff_No = table.Column<string>(nullable: true),
@@ -100,7 +113,8 @@ namespace PAYROL_SYSTEM.Migrations
                 columns: table => new
                 {
                     strId = table.Column<string>(maxLength: 50, nullable: false),
-                    strAllowanceTypeName = table.Column<string>(nullable: false)
+                    strAllowanceTypeName = table.Column<string>(nullable: false),
+                    strSalary_Rate = table.Column<double>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -131,7 +145,7 @@ namespace PAYROL_SYSTEM.Migrations
                     strUserId = table.Column<string>(nullable: false),
                     strDate = table.Column<DateTime>(nullable: false),
                     strAmount = table.Column<double>(nullable: false),
-                    strPaidStatus = table.Column<bool>(nullable: false)
+                    strPaidStatus = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -158,6 +172,34 @@ namespace PAYROL_SYSTEM.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "payslipMonthlyInfos",
+                columns: table => new
+                {
+                    strId = table.Column<string>(maxLength: 50, nullable: false),
+                    strUserId = table.Column<string>(nullable: false),
+                    strBasicSalary = table.Column<double>(nullable: false),
+                    strTotalAllowance = table.Column<double>(nullable: false),
+                    strTotalCommission = table.Column<double>(nullable: false),
+                    strTotalOvertime = table.Column<double>(nullable: false),
+                    strNSSF = table.Column<double>(nullable: false),
+                    strNHIF = table.Column<double>(nullable: false),
+                    strHousingLevvy = table.Column<double>(nullable: false),
+                    strMonthYear = table.Column<string>(nullable: false),
+                    strIsPaidStatus = table.Column<bool>(nullable: false),
+                    strSaccoDeduction = table.Column<double>(nullable: false),
+                    strBankName = table.Column<string>(nullable: false),
+                    stBankAccount = table.Column<string>(nullable: false),
+                    strFullName = table.Column<string>(nullable: false),
+                    strDesignation = table.Column<string>(nullable: false),
+                    strJobGroup = table.Column<string>(nullable: false),
+                    strDepartment = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_payslipMonthlyInfos", x => x.strId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
@@ -175,6 +217,9 @@ namespace PAYROL_SYSTEM.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "allowancePayment_Transactions");
+
             migrationBuilder.DropTable(
                 name: "Allowances");
 
@@ -201,6 +246,9 @@ namespace PAYROL_SYSTEM.Migrations
 
             migrationBuilder.DropTable(
                 name: "PaymentHistories");
+
+            migrationBuilder.DropTable(
+                name: "payslipMonthlyInfos");
 
             migrationBuilder.DropTable(
                 name: "Users");

@@ -18,6 +18,7 @@ namespace PAYROL_SYSTEM.Interfaces
         IpaymentRepo IpaymentRepo { get; }
         IUserRepo userRepo { get; }
         IAllowancePayment_Transactions allowancePayment_Transactions { get; }
+        IPayslipInfo payslipInfo { get; }
         int save();
 
     }

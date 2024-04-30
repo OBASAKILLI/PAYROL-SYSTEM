@@ -1,0 +1,101 @@
+﻿
+@inject PAYROL_SYSTEM.Interfaces.IUnitOfWork _unitofwork
+@{
+
+    PAYROL_SYSTEM.Controllers.UpdatePayrol updatePayrol = new PAYROL_SYSTEM.Controllers.UpdatePayrol(_unitofwork);
+    ViewData["Title"] = "GeneratePayslip";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+    var period =DateTime.UtcNow.AddHours(3).ToString("MMM , yyyy");
+
+    PayslipMonthlyInfo payslipMonthlyInfo = new PayslipMonthlyInfo();
+    Employees employees = new Employees();
+    var UserId = "";
+    PayslipMonthlyInfo payslo = await _unitofwork.payslipInfo.GetById(ViewBag.id);
+    if (payslo != null)
+    {
+        payslipMonthlyInfo = payslo;
+        UserId = payslo.strUserId;
+    }
+    Employees user = await _unitofwork.employeeRepo.GetById(UserId);
+    if (user != null)
+    {
+        employees = user;
+
+    }
+}
+
+<div class="container-fluid">
+
+    <div class="row" style="margin-top:8px">
+        <div class="col-sm-3">
+        </div>
+        <div class="col-sm-6">
+            <div style="background-color:white;text-align:center;font-family:Calibri">
+                <img src="~/Icons/ECAN_CRF.jpeg" style="height:70px;width:70px" class="img-fluid" />
+                <div style=" font-size:large">
+                    ECAN CRF ELDORET
+                </div>
+                <div style=" font-size:medium;">
+                    <u>  Period : @period</u>
+                </div>
+
+                <div style="margin-top:8px;text-align:left">
+
+                    <table class=" table-sm table-striped" style="width:100%">
+                        <tr>
+                            <td>  Name of Staff</td>
+                            <td>  @payslipMonthlyInfo.strFullName</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td> Designation/Role</td>
+                            <td> @payslipMonthlyInfo.strDesignation</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td> Job Group</td>
+                            <td> @payslipMonthlyInfo.strJobGroup</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td> Department</td>
+                            <td>  @payslipMonthlyInfo.strDepartment</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>   PIN No</td>
+                            <td>@employees.strIdKRAPIN</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>  ID No</td>
+                            <td> @employees.strIdNo</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>  Employment Date</td>
+                            <td>  @employees.strDate_Of_Join.ToShortDateString()</td>
+                            <td></td>
+                        </tr>
+                    </table>
+                    <div style="margin:8px;text-align:center">
+                        <u>      Income</u>
+                    </div>
+
+                    <table class=" table-sm table-striped" style="width:100%">
+                        <tr>
+                            <td>  Basic Salary</td>
+                            <td>  @payslipMonthlyInfo.strBasicSalary.ToString("#,##0.00")</td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+               
+            </div>
+            </div>
+        <div class="col-sm-3">
+        </div>
+
+    </div>
+</div>
+

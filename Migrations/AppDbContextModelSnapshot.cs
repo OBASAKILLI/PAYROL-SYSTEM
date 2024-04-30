@@ -249,6 +249,59 @@ namespace PAYROL_SYSTEM.Migrations
                     b.ToTable("PaymentHistories");
                 });
 
+            modelBuilder.Entity("PAYROL_SYSTEM.Models.PayslipMonthlyInfo", b =>
+                {
+                    b.Property<string>("strId")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("stBankAccount")
+                        .IsRequired();
+
+                    b.Property<string>("strBankName")
+                        .IsRequired();
+
+                    b.Property<double>("strBasicSalary");
+
+                    b.Property<string>("strDepartment")
+                        .IsRequired();
+
+                    b.Property<string>("strDesignation")
+                        .IsRequired();
+
+                    b.Property<string>("strFullName")
+                        .IsRequired();
+
+                    b.Property<double>("strHousingLevvy");
+
+                    b.Property<bool>("strIsPaidStatus");
+
+                    b.Property<string>("strJobGroup")
+                        .IsRequired();
+
+                    b.Property<string>("strMonthYear")
+                        .IsRequired();
+
+                    b.Property<double>("strNHIF");
+
+                    b.Property<double>("strNSSF");
+
+                    b.Property<double>("strSaccoDeduction");
+
+                    b.Property<double>("strTotalAllowance");
+
+                    b.Property<double>("strTotalCommission");
+
+                    b.Property<double>("strTotalOvertime");
+
+                    b.Property<string>("strUserId")
+                        .IsRequired();
+
+                    b.HasKey("strId");
+
+                    b.ToTable("payslipMonthlyInfos");
+                });
+
             modelBuilder.Entity("PAYROL_SYSTEM.Models.Users", b =>
                 {
                     b.Property<string>("strId")

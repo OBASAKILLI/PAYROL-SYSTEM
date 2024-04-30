@@ -54,7 +54,8 @@
                         <input asp-for="strNSSFDeduction" type="number" required placeholder="NSSF" class="form-control" />
                     </div>
                     <div class="form-group">
-                        <input asp-for="strHouseLevy" type="number" required placeholder="Housing Levy" class="form-control" />
+                        in Salary %
+                        <input asp-for="strHouseLevy" type="text" required placeholder="Housing Levy" class="form-control" />
                     </div>
 
 
@@ -101,9 +102,9 @@
                         </th>
                         <th>NHIF</th>
                         <th>NSSF</th>
-                        <th>Housing Levy</th>
+                        <th>Housing Levy (Salary %)</th>
 
-                        <th colspan="2"></th>
+                        <th colspan="2">Action</th>
                     </tr>
                 </thead>
                 <tbody id="myUL">
@@ -122,7 +123,7 @@
                         </td>
                         <td>@item.strNHIFDeduction</td>
                         <td>@item.strNSSFDeduction</td>
-                        <td>@item.strHouseLevy</td>
+                        <td>@item.strHouseLevy %</td>
                         <td>
                             <a data-toggle="modal" data-target="#Edit_@item.strId">
                                 <i class="fa fa-pencil" aria-hidden="true"></i>

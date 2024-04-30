@@ -1,0 +1,112 @@
+﻿
+
+@inject PAYROL_SYSTEM.Interfaces.IUnitOfWork _unitofwork
+@{
+    PAYROL_SYSTEM.Controllers.UpdatePayrol updatePayrol = new PAYROL_SYSTEM.Controllers.UpdatePayrol(_unitofwork);
+
+  await  updatePayrol.ManageMonthlyPayrolRecord();
+
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+
+
+<div class="container-fluid">
+    <div class="row" style="margin:10px">
+        <div class="col-6">
+            <h1 style="font-weight:bold;font-family:Calibri;color:#072652">Availlable Payslips for ( @updatePayrol.GetCurrentMonthYear() )</h1>
+
+        </div>
+
+    </div>
+    <div class="row" style="margin:10px">
+        <div class="col-6">
+            <div style="text-align:start;margin-top:8px">
+                <div style="font-size:large">
+                    All Generated Payslips
+                </div>
+                <div style="font-size:small;color:gray">
+                    List of all payslips available at the moment
+                </div>
+            </div>
+
+        </div>
+       
+    </div>
+
+
+    @if (TempData["successs"] != null)
+    {
+        <div class="alert alert-success">
+            <strong>Success!!..</strong>@TempData["successs"]
+        </div>
+    }
+    @if (TempData["Err"] != null)
+    {
+        <div class="alert alert-danger">
+            <strong>Whoops!!..</strong>@TempData["Err"]
+        </div>
+    }
+    <partial name="_Search" />
+    <table class="table table-responsive-sm  table-striped table-bordered  table-sm" style="color:black">
+        <thead style="background-color:#072652;color:white">
+
+            <tr>
+                <th>
+                    Full name
+                </th>
+                <th>
+                    Department
+                </th>
+                <th>
+                    Phone No
+                </th>
+                <th>Basic Salary</th>
+                <th>Period</th>
+                <th>Job Group</th>
+
+                <th>Payslip</th>
+            </tr>
+        </thead>
+
+        <tbody id="myUL">
+            @foreach (var item in (await _unitofwork.payslipInfo.GetAll()).Where(k => k.strMonthYear == updatePayrol.GetCurrentMonthYear()))
+            {
+                string phone = "--";
+                Employees userrr = await _unitofwork.employeeRepo.GetById(item.strUserId);
+                if (userrr != null)
+                {
+                    phone = userrr.strPhoneNo;
+                }
+
+            <tr>
+
+                <td>
+                    <b class="text-capitalize">
+                        <img src="/Icons/ProfilePic.png" style="height:30px;width:30px" />
+                        <span class="text-uppercase" style="margin-left:8px">@item.strFullName</span>
+                    </b>
+
+                </td>
+                <td>
+                    @item.strDepartment
+                </td>
+                <td>
+                   @phone
+                </td>
+                <td>KES @item.strBasicSalary.ToString("#,##0.00")</td>
+                <td>@item.strMonthYear</td>
+                <td>@item.strJobGroup</td>
+                <td>
+                    <a asp-action="GeneratePayslip" asp-controller="Payslips" asp-route-id="@item.strId">
+                        <i class="fa fa-cogs" aria-hidden="true"></i>
+                        Generate
+                    </a>
+                </td>
+            </tr>
+
+
+        }
+            </tbody>
+        </table>
+</div>
