@@ -13,6 +13,8 @@ namespace PAYROL_SYSTEM.Controllers
 {
     public class HomeController : Controller
     {
+        public static Companies? CompanyId =null;
+
         private readonly IUnitOfWork _unitOfWork;
 
         public HomeController(IUnitOfWork unitOfWork)
@@ -23,9 +25,21 @@ namespace PAYROL_SYSTEM.Controllers
         {
             return View();
         }
+        public IActionResult CompanyDashboard(Companies Id)
+        {
+            if (Id != null)
+            {
+                CompanyId = Id;
+            }
+            ViewBag.CompanyId = CompanyId;
+            return View();
+        }
 
         public IActionResult Dashboard()
         {
+            CompanyId = null;
+
+
             return View();
         }
         public async Task<IActionResult> Department()

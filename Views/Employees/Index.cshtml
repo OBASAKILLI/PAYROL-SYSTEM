@@ -78,7 +78,7 @@
             </tr>
         </thead>
         <tbody id="myUL">
-            @foreach (var item in (await _unitofwork.employeeRepo.GetAll()).OrderBy(k => k.strActive_Status))
+            @foreach (var item in (await _unitofwork.employeeRepo.GetAll()).Where(k=> k.strCompanyId == PAYROL_SYSTEM.Controllers.HomeController.CompanyId).OrderBy(k => k.strActive_Status))
             {
 
                 Departments d = await _unitofwork.departmentRepo.GetById(item.strDetartmentId);

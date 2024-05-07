@@ -55,7 +55,14 @@
             </a>
             @{
                 var name = HttpContextAccessor.HttpContext.Session.GetString("Name");
-                var RegionName = HttpContextAccessor.HttpContext.Session.GetString("RegionName");
+                var RegionName = "";
+                if (PAYROL_SYSTEM.Controllers.HomeController.CompanyId == Companies.Ecan_crf)
+                {
+                    RegionName = "ECAN FOUNDATION";
+                }
+                else if(PAYROL_SYSTEM.Controllers.HomeController.CompanyId == Companies.Hope_water) {
+                    RegionName = "HOPE WATER INTERNATIONAL";
+                }
             }
         </header>
 
@@ -81,7 +88,7 @@
                 <div class="row">
                     <div class="col-sm-6 col-6 text-left">
                         <img data-toggle="push-menu" style="height:30px;width:30px" src="~/Icons/right-arrow.png" />
-                        <span style="font-size:large;color:white;font-family:Calibri;margin-left:16px;font-weight:bold" class="text-uppercase">@RegionName </span>
+                        <span style="font-size:large;color:#072652;font-family:Calibri;margin-left:16px;font-weight:bold" class="text-uppercase">@RegionName </span>
                     </div>
                     <div class="col-sm-6 col-6 text-right">
 

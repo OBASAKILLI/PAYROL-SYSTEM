@@ -4,6 +4,7 @@
 @using PAYROL_SYSTEM.Session;
 
 @{
+    var CompanyId = PAYROL_SYSTEM.Controllers.HomeController.CompanyId;
     var image = HttpContextAccessor.HttpContext.Session.GetString("Imageurl");
     var name = HttpContextAccessor.HttpContext.Session.GetString("Name");
     var desc = HttpContextAccessor.HttpContext.Session.GetString("Desc");
@@ -21,17 +22,17 @@
         <ul class="sidebar-menu treeview" data-widget="tree">
 
             <li class="treeview" style="height: auto;color:black">
-                <a asp-action="Dashboard" asp-controller="Home">
+                <a asp-action="Dashboard" onclick="reload()" asp-controller="Home">
                     <i style="color:white" class="fal fa-tachometer-alt-slowest"></i>
                     <span style="color:white;margin-left:8px">
-                        <b>Dashboard</b>
+                        <b>Main Dashboard</b>
 
                     </span>
                 </a>
                 <script>
                     function reload() {
 
-                        window.location = 'http://www.airbnbsystem.com:84/Home/HomePage/';
+                        window.location = 'https://localhost:44352/Home/Dashboard/';
                     }
                 </script>
 
@@ -42,46 +43,48 @@
                     background-color: red;
                 }
             </style>
-            <li class="treeview" style="height: auto;color:white">
-                <a href="#" style="color:white">
-                    <i class="fa fa-book" aria-hidden="true"></i>
+            @if (CompanyId != null)
+            {
+                <li class="treeview" style="height: auto;color:white">
+                    <a href="#" style="color:white">
+                        <i class="fa fa-book" aria-hidden="true"></i>
 
-                    <span style="color:white;" class="Mennnnu"> Employees  <br /><span style="margin-left:44px;font-size:x-small" class="Mennnnu">View/Manage Employees </span></span>
-                    <span class="pull-right-container">
-                        <i style="color:white" class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu" style="display: none">
-                    <li>
-                        <a asp-action="Index" asp-controller="Employees" asp-route-Id="">
-                            <i class="fa fa-eye" aria-hidden="true"></i>View all Employees
-                        </a>
-                    </li>
-                    <li>
-                        <a asp-action="OverTime" asp-controller="Employees" asp-route-Id="">
-                            <i class="fa fa-eye" aria-hidden="true"></i>Employee OverTime
-                        </a>
-                    </li>
-                    <li>
-                        <a asp-action="Commission" asp-controller="Employees" asp-route-Id="">
-                            <i class="fa fa-eye" aria-hidden="true"></i>Employee Commission
-                        </a>
-                    </li>
-                    <li>
-                        <a asp-action="Index" asp-controller="Allowances" asp-route-Id="">
-                            <i class="fa fa-eye" aria-hidden="true"></i>Employee Allowances
-                        </a>
-                    </li>
-                    <li>
-                        <a asp-action="Index" asp-controller="Payslips" asp-route-Id="">
-                            <i class="fa fa-eye" aria-hidden="true"></i>Generate Payslips
-                        </a>
-                    </li>
+                        <span style="color:white;" class="Mennnnu"> Employees  <br /><span style="margin-left:44px;font-size:x-small" class="Mennnnu">View/Manage Employees </span></span>
+                        <span class="pull-right-container">
+                            <i style="color:white" class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu" style="display: none">
+                        <li>
+                            <a asp-action="Index" asp-controller="Employees" asp-route-Id="@CompanyId">
+                                <i class="fa fa-eye" aria-hidden="true"></i>View all Employees
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-action="OverTime" asp-controller="Employees" asp-route-Id="@CompanyId">
+                                <i class="fa fa-eye" aria-hidden="true"></i>Employee OverTime
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-action="Commission" asp-controller="Employees" asp-route-Id="@CompanyId">
+                                <i class="fa fa-eye" aria-hidden="true"></i>Employee Commission
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-action="Index" asp-controller="Allowances" asp-route-Id="@CompanyId">
+                                <i class="fa fa-eye" aria-hidden="true"></i>Employee Allowances
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-action="Index" asp-controller="Payslips" asp-route-Id="@CompanyId">
+                                <i class="fa fa-eye" aria-hidden="true"></i>Generate Payslips
+                            </a>
+                        </li>
 
 
-                </ul>
-            </li>
-
+                    </ul>
+                </li>
+            }
             <li class="treeview" style="height: auto;color:white">
                 <a href="#" style="color:white">
                     <i class="fa fa-book" aria-hidden="true"></i>
@@ -119,23 +122,23 @@
                 </ul>
             </li>
             @*<li class="treeview" style="height: auto;color:white">
-                <a href="#" style="color:white">
-                    <i class="fa fa-book" aria-hidden="true"></i>
-                    <span style="color:white;" class="Mennnnu"> Job Groups  <br /><span style="margin-left:44px;font-size:x-small" class="Mennnnu">View/Manage Job Groups </span></span>
-                    <span class="pull-right-container">
-                        <i style="color:white" class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu" style="display: none">
-                    <li>
-                        <a asp-action="Index" asp-controller="Job_Group" asp-route-Id="">
-                            <i class="fa fa-eye" aria-hidden="true"></i>View Job Groups
-                        </a>
-                    </li>
+            <a href="#" style="color:white">
+                <i class="fa fa-book" aria-hidden="true"></i>
+                <span style="color:white;" class="Mennnnu"> Job Groups  <br /><span style="margin-left:44px;font-size:x-small" class="Mennnnu">View/Manage Job Groups </span></span>
+                <span class="pull-right-container">
+                    <i style="color:white" class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu" style="display: none">
+                <li>
+                    <a asp-action="Index" asp-controller="Job_Group" asp-route-Id="">
+                        <i class="fa fa-eye" aria-hidden="true"></i>View Job Groups
+                    </a>
+                </li>
 
 
-                </ul>
-            </li>*@
+            </ul>
+        </li>*@
             <li class="treeview" style="height: auto;color:white">
                 <a href="#" style="color:white">
                     <i class="fa fa-book" aria-hidden="true"></i>

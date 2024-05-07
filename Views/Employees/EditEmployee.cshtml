@@ -239,7 +239,19 @@
             </div>
 
             <div class="row">
-                <div class="col-sm-3">
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label asp-for="strCompanyId" class="control-label"></label>
+
+                        <select asp-for="strCompanyId" class="form-control">
+                            <option>@Companies.Ecan_crf</option>
+                            <option>@Companies.Hope_water</option>
+
+                        </select>
+                        <span asp-validation-for="strCompanyId" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-sm-2">
                     <div class="form-group">
                         <label asp-for="strBank_Name" class="control-label"></label>
 
@@ -247,14 +259,14 @@
                         <span asp-validation-for="strBank_Name" class="text-danger"></span>
                     </div>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-2">
                     <div class="form-group">
                         <label asp-for="strAccountNo" class="control-label"></label>
                         <input asp-for="strAccountNo" required class="form-control" />
                         <span asp-validation-for="strAccountNo" class="text-danger"></span>
                     </div>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-2">
 
                     <div class="form-group">
                         <label asp-for="strStaff_No" class="control-label"></label>

@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewData["Title"] = "CompanyDashboard";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+
+
+
+<div class="container-fluid">
+    <div style="margin-top:24px">
+        @if (ViewBag.CompanyId == Companies.Ecan_crf)
+        {
+
+            <h1 style="font-weight:bold;font-family:Calibri;color:#072652"> <span style="color:coral">Dashboard</span></h1>
+            <div style="text-align:center"><img src="~/Icons/ECAN_CRF.jpeg" class="img-fluid" style="height:300px;border-radius:100%" /></div>
+        }
+        else
+        {
+
+            <h1 style="font-weight:bold;font-family:Calibri;color:#072652">  <span style="color:coral">INTERNATIONAL</span></h1>
+            <div style="text-align:center"><img src="~/Icons/Hopewater.jpg" class="img-fluid" style="height:300px;border-radius:100%" /></div>
+        }
+    </div>
+</div>

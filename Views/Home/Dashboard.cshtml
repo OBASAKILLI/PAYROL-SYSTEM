@@ -4,5 +4,71 @@
     Layout = "~/Views/Shared/_Dashboard.cshtml";
 }
 
-<h1>Dashboard</h1>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-6">
+            <h1 style="font-weight:bold;font-family:Calibri;color:#072652">Main  <span style="color:coral">Dashboard</span></h1>
+        </div>
+    </div>
+    <div style="margin-top:24px">
+        Available Companie
+        <div style="color:gray;font-size:small">
+            Click on the Company to view the companie's info
+        </div>
+    </div>
+    <div style="margin-top:16px">
+        <div class="row">
+            <div class="col-6">
+                <a asp-action="CompanyDashboard" asp-controller="Home" asp-route-Id="@Companies.Ecan_crf">
+                <div style="background-color:white;border-radius:8px;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);" class="container-fluid">
+                    <table style=";font-family:Calibri">
+                        <tr>
+                            <td>
+                                <img src="~/Icons/ECAN_CRF.jpeg" class="img-fluid" style="height:70px;width:70px" />
+                            </td>
+                            <td>
+                                <span>
+                                    <strong style="font-size:large">ECAN CRF</strong>
+                                </span>
+                                <div style="font-size:x-large;margin-left:16px;margin-top:16px">30</div>
+                                <div style="font-size:small;color:gray">Employees</div>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+</a>
+            </div>
+            <div class="col-6">
+                <a asp-action="CompanyDashboard" asp-controller="Home" asp-route-Id="@Companies.Hope_water">
+                    <div style="background-color:white;border-radius:8px;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);" class="container-fluid">
+                        <table style=";font-family:Calibri">
+                            <tr>
+                                <td>
+                                    <img src="~/Icons/Hopewater.jpg" class="img-fluid" style="height:70px;width:70px;border-radius:100%" />
+                                </td>
+                                <td>
+                                    <span>
+                                        <strong style="font-size:large">HOPE WATER INTERNATIONAL</strong>
+                                    </span>
+                                    <div style="font-size:x-large;margin-left:16px;margin-top:16px">30</div>
+                                    <div style="font-size:small;color:gray">Employees</div>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div style="margin-top:8px;background-color:white" class="row">
+    
+        <div class="col-4">
+            <img src="~/Icons/undraw_remotely_2j6y.png" class="img-fluid" />
+        </div>
+    </div>
+
+</div>
 

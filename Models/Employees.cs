@@ -69,6 +69,9 @@ namespace PAYROL_SYSTEM.Models
         public double strPenalties { get; set; }
         [DisplayName("Employee Type")]
         public EmployeeType strEmployeeType { get; set; }
+        [DisplayName("Company")]
+        [Required]
+        public Companies strCompanyId { get; set; }
     }
     public class Allowance
     {
