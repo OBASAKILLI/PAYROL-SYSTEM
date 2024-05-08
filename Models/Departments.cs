@@ -13,6 +13,6 @@ namespace PAYROL_SYSTEM.Models
         [Required]
         public string strId { get; set; }
         [Required]
-        public string strDepartmentId { get; set; }
+        public string strDepartmentId { get; set; }// department nam
     }
 }

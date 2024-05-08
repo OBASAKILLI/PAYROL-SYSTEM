@@ -1,6 +1,353 @@
-﻿@{
+﻿
+@model List<PAYROL_SYSTEM.Controllers.P9Info>
+@inject PAYROL_SYSTEM.Interfaces.IUnitOfWork _Iunitofwork
+@{
     ViewData["Title"] = "Privacy Policy";
-}
-<h1>@ViewData["Title"]</h1>
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
 
-<p>Use this page to detail your site's privacy policy.</p>
+
+
+    Employees employees = await _Iunitofwork.employeeRepo.GetById(ViewBag.UserId);
+
+
+
+}
+<script src="~/JsPrintManager/zip.js"></script>
+<script src="~/JsPrintManager/zip-ext.js"></script>
+<script src="~/JsPrintManager/deflate.js"></script>
+<script src="~/JsPrintManager/JSPrintManager.js"></script>
+<div class="row">
+    <div class="col-sm-8">
+
+    </div> <div class="col-sm-4">
+    <div style="text-align:center;padding:8px">
+
+        <div onclick="printCertificate()" style="color:white;background-color:#072652;margin-top:50px;padding:8px;border-radius:8px;font-family:Calibri" class="btn-sm">
+            <i class="fa fa-print"></i>
+            <span> Print P9Form</span>
+        </div>
+
+        <script>
+            function printCertificate() {
+                const printContents = document.getElementById('DefaultersLoanForm').innerHTML;
+
+                document.body.innerHTML = printContents;
+                window.print();
+
+                alert("Document Printed successfully");
+                location.reload();
+            }
+        </script>
+    </div>
+</div>
+</div>
+<div class="container-fluid">
+    <div style="background-color:white;color:black;font-family:Calibri" id="DefaultersLoanForm">
+
+        <div style="text-align:center;font-weight:bold">
+            KENYA REVENUE AUTHORITY
+        </div>
+        <div style="text-align:center;font-weight:bold;margin-top:8px">
+            INCOME TAX DEPARTMENT
+        </div>
+        <div style="text-align:center;margin-top:8px">
+            INCOME TAX DEDUCTION CARD YEAR : 2023
+        </div>
+
+
+        <div style=";font-size:xx-small">
+            <div class="row">
+                <div class="col-sm-6">
+                    <table class=" table-sm table-borderless" style="width:100%">
+                        <tr>
+                            <th>
+                                Employers Name:
+                            </th>
+                            <td>
+                                HOPE WATER AFRICA
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                Employee's Main Name:
+                            </th>
+                            <td>
+                                @employees.strFullName.Split(' ')[0]
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                Employee's Other Names
+                            </th>
+                            <td>
+                                @employees.strFullName
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-sm-6">
+                    <table class=" table-sm table-borderless" style="width:100%">
+                        <tr>
+                            <th>
+                                Employer's PIN:
+                            </th>
+                            <td>
+                                P051196590L
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                Employee's PIN
+                            </th>
+                            <td>
+                                @employees.strIdKRAPIN
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                Payroll No:
+                            </th>
+                            <td>
+                                M1646
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        <table class="table table-sm " style="width:100%;font-size:x-small;color:black">
+
+            <thead>
+                <tr style="text-align:center">
+                    <th>
+
+                    </th>
+                    <th>
+                        Basic
+                        Salary
+                    </th>
+                    <th>
+                        Benefits
+                        Non Cash
+
+                    </th>
+                    <th>
+                        Value of
+                        Quarter
+                    </th>
+                    <th>
+                        Total Gross
+                        pay
+
+                    </th>
+                    <th>
+                        30%
+                    </th>
+                    <th>
+                        Actual
+                    </th>
+                    <th>
+                        Fixed
+                    </th>
+                    <th>
+                        Standard
+                        Amount Of
+                        Interest
+
+                    </th>
+                    <th>
+                        The lowest
+                        of E added
+                        to F
+                    </th>
+                    <th>
+                        Chargeable
+                        Pay
+
+                    </th>
+                    <th>
+                        Tax
+
+                    </th>
+                    <th>
+                        Personal
+                        Relief
+                    </th>
+                    <th>
+                        PAYE Tax
+
+                    </th>
+
+                </tr>
+
+                <tr style="text-align:center">
+                    <td>Month</td>
+                    <td>A</td>
+                    <td>B</td>
+                    <td>C</td>
+                    <td>D</td>
+                    <td>E1</td>
+                    <td>E2</td>
+                    <td>E3</td>
+                    <td>F</td>
+                    <td>G</td>
+                    <td>H</td>
+
+                    <td>J</td>
+                    <td>K</td>
+                    <td>L</td>
+                </tr>
+
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr style="text-align:center">
+                        <td style="text-align:start">@item.Month</td>
+                        <td>@item.Basic_Salary.ToString("#,##0.00")</td>
+                        <td>@item.Benefits_Non_Cash.ToString("#,##0.00")</td>
+                        <td>@item.Value_of_Quarter.ToString("#,##0.00")</td>
+                        <td>@item.Total_Gross_pay.ToString("#,##0.00")</td>
+                        <td>@item.ThirtyPerCent.ToString("#,##0.00")</td>
+                        <td>@item.Actual.ToString("#,##0.00")</td>
+                        <td>@item.Fixed.ToString("#,##0.00")</td>
+                        <td>@item.Standard_Smount.ToString("#,##0.00")</td>
+                        <td>@item.TheLowestOf_E_and_F.ToString("#,##0.00")</td>
+                        <td>@item.Chargable_Pay.ToString("#,##0.00")</td>
+                        <td>@item.Tax.ToString("#,##0.00")</td>
+                        <td>@item.P_Relief.ToString("#,##0.00")</td>
+                        <td>@item.Payee.ToString("#,##0.00")</td>
+
+                    </tr>
+                }
+                <tr style="text-align:center">
+                    <th style="text-align:start">TOTAL</th>
+                    <th>0.00</th>
+                    <th>0.00</th>
+                    <th>0.00</th>
+                    <th>0.00</th>
+                    <th>0.00</th>
+                    <th>0.00</th>
+                    <th>0.00</th>
+                    <th>0.00</th>
+                    <th>0.00</th>
+                    <th>0.00</th>
+                    <th>0.00</th>
+                    <th>0.00</th>
+                    <th>0.00</th>
+
+                </tr>
+            </tbody>
+
+        </table>
+
+
+
+        <div class="col-sm-10">
+            <div class="row">
+                <div class="col-sm-6" style="font-family:Calibri;font-size:x-small;font-weight:bolder">
+                    <div style="text-align:center;font-weight:bold">
+                        TOTAL CHARGEABLE PAY (COL H) KES
+                    </div>
+                    <div>
+                        (1) Date employee commenced if during the year...............................................
+                    </div>
+                    <div>
+                        Name and address of old employer..................................................................
+
+                    </div>
+                    <div>
+                        (2) Date left if during the year....................................................................................
+
+                    </div>
+                    <div>
+                        Name and address of new employer.................................................................
+
+                    </div>
+                    <div>
+                        (3) Where housing is provided,State monthly rent..............................................
+
+                    </div>
+                    <div style="text-align:start;font-weight:bold">
+                        TOTAL CHARGEABLE PAY (COL H) KES
+                    </div>
+                    <div>
+                        NAME <br />
+                        ....................................................................................................................................
+
+                    </div>
+                    <div>
+                        ADDRESS<br />
+                        .....................................................................................................................................
+                    </div>
+                    <div>
+                        DATE & STAMP<br />
+                        ....................................................................................................................................
+
+                    </div>
+                </div>
+                <div class="col-sm-6" style="font-family:Calibri;font-size:x-small;font-weight:bolder">
+                    <div style="text-align:center;font-weight:bold">
+                        TOTAL TAX (COL M) KES
+                    </div>
+                    <div>
+                        (4) Where any of the pay relates to a period other than this year e.g
+                        gratuity, give details..............
+
+                    </div>
+                    <table class="table table-sm table-bordered" style="color:black">
+                        <tr>
+                            <td>Year</td>
+                            <td>Amount (Kenya Shillings) </td>
+                            <td>
+                                Tax (KES)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                Reference
+                                no..........................
+                            </td>
+                        </tr>
+                    </table>
+                    <div style="text-align:start;font-weight:bold">
+                        NAMES OF MORTGAGE FINANCIAL INSTITUTION
+                    </div>
+                    <div>
+                        .............. <br />
+                        ....................................................................................................................................
+
+                    </div>
+                    <div>
+                        L.R. NO. OF OWNER OCCUPIED HOUSE<br />
+                        .....................................................................................................................................
+                    </div>
+                    <div>
+                        DATE OF OCCUPATION <br />
+                        ....................................................................................................................................
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

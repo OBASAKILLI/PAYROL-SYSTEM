@@ -21,8 +21,13 @@ namespace PAYROL_SYSTEM.Controllers
         {
             _unitOfWork = unitOfWork;
         }
-        public IActionResult Index()
+
+     
+        public async Task<IActionResult> Index()
         {
+           
+            
+
             return View();
         }
         public IActionResult CompanyDashboard(Companies Id)
@@ -99,9 +104,14 @@ namespace PAYROL_SYSTEM.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public async Task<IActionResult> Privacy(string id)
         {
-            return View();
+            GenerateP9_Form generateP9_Form = new GenerateP9_Form(_unitOfWork);
+
+            ViewBag.UserId = id;
+
+            var data = await generateP9_Form.P9InfoMethod(id);
+            return View(data);
         }
 
         public async Task<IActionResult> CreateDepartment(string strdepa_name)
