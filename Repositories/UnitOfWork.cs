@@ -28,6 +28,7 @@ namespace PAYROL_SYSTEM.Repositories
             allowancesRepo = new AllowanceRepo(_appDbContext);
             allowancePayment_Transactions = new AllowancePayment_Transactions_Repo(_appDbContext);
             payslipInfo = new PayslipMonthlyInfoRepo(_appDbContext);
+            deductionsRepository = new DeductionsSettingsRepository(_appDbContext);
 
         }
         public IAllowancesRepo allowancesRepo { get; private set; }
@@ -48,20 +49,21 @@ namespace PAYROL_SYSTEM.Repositories
 
         public IpaymentRepo IpaymentRepo { get; private set; }
 
-        public IUserRepo userRepo { get; private set; }
+        public IUserRepo userRepo { get; private set; }      
 
-       
-
+        
         public IAllowancePayment_Transactions allowancePayment_Transactions { get; private set; }
 
         public IPayslipInfo payslipInfo { get; private set; }
+
+        public IDeductionsRepository deductionsRepository { get; private set; }
 
         public void Dispose()
         {
             _appDbContext.Dispose();
         }
 
-        public  int save()
+        public int save()
         {
             return _appDbContext.SaveChanges();
         }

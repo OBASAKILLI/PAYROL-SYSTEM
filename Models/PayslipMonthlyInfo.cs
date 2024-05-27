@@ -43,10 +43,12 @@ namespace PAYROL_SYSTEM.Models
         public string strFullName { get; set; }
         [Required]
         public string strDesignation { get; set; }
-        [Required]
-        public string strJobGroup { get; set; }
+      //  [Required]
+      //  public string strJobGroup { get; set; }
         [Required]
         public string strDepartment { get; set; }
+        [Required]
+        public double PAYE { get; set; }
     
     }
 }

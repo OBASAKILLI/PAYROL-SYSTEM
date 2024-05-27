@@ -5,7 +5,7 @@
     PAYROL_SYSTEM.Controllers.UpdatePayrol updatePayrol = new PAYROL_SYSTEM.Controllers.UpdatePayrol(_unitofwork);
     ViewData["Title"] = "GeneratePayslip";
     Layout = "~/Views/Shared/_Dashboard.cshtml";
-    var period =DateTime.UtcNow.AddHours(3).ToString("MMM , yyyy");
+    var period = DateTime.UtcNow.AddHours(3).ToString("MMM , yyyy");
 
     PayslipMonthlyInfo payslipMonthlyInfo = new PayslipMonthlyInfo();
     Employees employees = new Employees();
@@ -22,7 +22,15 @@
         employees = user;
 
     }
+    async Task<string> GetAllowanceType(string allId)
+    {
+        return (await _unitofwork.allowanceTypeRepo.GetById(allId)).strAllowanceTypeName;
+    }
 }
+<script src="~/JsPrintManager/zip.js"></script>
+<script src="~/JsPrintManager/zip-ext.js"></script>
+<script src="~/JsPrintManager/deflate.js"></script>
+<script src="~/JsPrintManager/JSPrintManager.js"></script>
 
 <div class="container-fluid">
 
@@ -30,14 +38,23 @@
         <div class="col-sm-3">
         </div>
         <div class="col-sm-6">
-            <div style="background-color:white;text-align:center;font-family:Calibri">
-                <img src="~/Icons/ECAN_CRF.jpeg" style="height:70px;width:70px" class="img-fluid" />
-                <div style=" font-size:large">
-                    ECAN CRF ELDORET
+            <div class="container-fluid" id="DefaultersLoanForm" style="background-color:white;text-align:center;font-family:Calibri">
+                <div class="row">
+                    <div class="col-2">
+                        <img src="~/Icons/ECAN_CRF.jpeg" style="height:50px;width:50px" class="img-fluid" />
+                    </div>
+                    <div class="col-10" style="text-align:left">
+                        <div style=" font-size:large">
+                            ECAN CRF ELDORET
+                        </div>
+                        <div style=" font-size:medium;">
+                            <u> Payslip Period : @period</u>
+                        </div>
+                    </div>
                 </div>
-                <div style=" font-size:medium;">
-                    <u>  Period : @period</u>
-                </div>
+
+
+
 
                 <div style="margin-top:8px;text-align:left">
 
@@ -52,11 +69,7 @@
                             <td> @payslipMonthlyInfo.strDesignation</td>
                             <td></td>
                         </tr>
-                        <tr>
-                            <td> Job Group</td>
-                            <td> @payslipMonthlyInfo.strJobGroup</td>
-                            <td></td>
-                        </tr>
+                      
                         <tr>
                             <td> Department</td>
                             <td>  @payslipMonthlyInfo.strDepartment</td>
@@ -88,12 +101,131 @@
                             <td>  @payslipMonthlyInfo.strBasicSalary.ToString("#,##0.00")</td>
                             <td></td>
                         </tr>
+
                     </table>
+                    <div style="margin:8px;text-align:center">
+
+                    </div>
+
+                    <table class=" table-sm table-striped" style="width:100%">
+                        <tr>
+                            <td>  Gross Salary</td>
+                            @{ 
+                                double GrossSalary = payslipMonthlyInfo .strBasicSalary+ payslipMonthlyInfo.strTotalAllowance + payslipMonthlyInfo.strTotalCommission + payslipMonthlyInfo.strTotalOvertime;
+                                double TTDeductions = payslipMonthlyInfo.strNHIF + payslipMonthlyInfo.strNSSF + payslipMonthlyInfo.strHousingLevvy + payslipMonthlyInfo.strSaccoDeduction+payslipMonthlyInfo.PAYE;
+                                double NetPay = GrossSalary - TTDeductions;
+                            }
+                            <td>  @GrossSalary.ToString("#,##0.00")</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>  NHIF</td>
+                            <td>  @payslipMonthlyInfo.strNHIF.ToString("#,##0.00")</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>  NSSF</td>
+                            <td>  @payslipMonthlyInfo.strNSSF.ToString("#,##0.00")</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td> Housing Levy</td>
+                            <td>  @payslipMonthlyInfo.strHousingLevvy.ToString("#,##0.00")</td>
+                            <td></td>
+                        </tr>
+                      
+
+                    </table>  <div style="margin:8px;text-align:center">
+
+                    </div>
+
+
+                    <table class=" table-sm table-striped" style="width:100%">
+                       
+                        <tr>
+                            <td>
+                                Tax Payable ( PAYE )
+                            </td>
+                            <td>@payslipMonthlyInfo.PAYE.ToString("#,##0.00")</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Sacco
+                            </td>
+                            <td>@payslipMonthlyInfo.strSaccoDeduction.ToString("#,##0.00")</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Total Deductions
+                            </td>
+                            <td></td>
+                            <td>@TTDeductions.ToString("#,##0.00")</td>
+
+                        </tr>
+                    </table>
+
+                    <div style="margin:8px;text-align:center">
+
+                    </div>
+                    <table class=" table-sm table-striped" style="width:100%">
+                        <tr>
+                            <td>
+                                Net Pay
+                            </td>
+                            <td>@NetPay.ToString("#,##0.00")</td>
+                            <td></td>
+                        </tr>
+                    </table>
+
+                    <div style="margin:8px;text-align:center">
+
+                    </div>
+                    <table class=" table-sm table-striped" style="width:100%">
+                        <tr>
+                            <td>Bank</td>
+                            <td>
+                                @payslipMonthlyInfo.strBankName
+                            </td>
+
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Acc No</td>
+                            <td>
+                                @payslipMonthlyInfo.stBankAccount
+                            </td>
+
+                            <td></td>
+                        </tr>
+
+                    </table>
+
                 </div>
-               
+
             </div>
-            </div>
+        </div>
         <div class="col-sm-3">
+            <div style="text-align:center">
+
+                <div onclick="printCertificate()" style="color:white;background-color:#072652;margin-top:50px;padding:8px;border-radius:8px;font-family:Calibri" class="btn-sm">
+                    <i class="fa fa-print"></i>
+                    <span> Print Payslip</span>
+                </div>
+
+                <script>
+                    function printCertificate() {
+                        const printContents = document.getElementById('DefaultersLoanForm').innerHTML;
+
+                        document.body.innerHTML = printContents;
+                        window.print();
+                      
+                         alert("Document Printed successfully");
+                        location.reload();
+                    }
+                </script>
+            </div>
         </div>
 
     </div>

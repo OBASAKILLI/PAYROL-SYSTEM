@@ -18,10 +18,11 @@
     ViewBag.strUserId = (await _unitOfwork.employeeRepo.GetAll()).Where(k => k.strActive_Status == Active_Status.Active);
     ViewBag.strAllowanvcetypeId = await _unitOfwork.allowanceTypeRepo.GetAll();
 }
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-6">
-            <h1 style="font-weight:bold;font-family:Calibri;color:#072652">Employee Allawances</h1>
+            <h1 style="font-weight:bold;font-family:Calibri;color:#072652">Employee  <span style="color:coral">Allowances</span></h1>
         </div>
     </div>
 
@@ -86,7 +87,7 @@
                     </script>
 
                     <div class="form-group" style="text-align:center;margin-top:24px">
-                        <input type="submit" value="Record Allowance" style="background-color:#072652;color:white" class="btn  btn-sm" />
+                        <input type="submit" value="Record Allowance" style="background-color:coral;color:white" class="btn  btn-sm" />
                     </div>
                 </form>
             </div>
@@ -211,12 +212,12 @@
                                                     </select>
                                                 </div>
                                                 @*<div class="form-group">
-                                                    <label asp-for="strAllowanvcetypeId" class="control-label"></label>
+                                                        <label asp-for="strAllowanvcetypeId" class="control-label"></label>
 
-                                                    <ejs-dropdownlist id="@item.strId" required ejs-for="strAllowanvcetypeId" name="@item.strId" filterBarPlaceholder="Search Allowance" allowFiltering="true" filtering="strAllowanvcetypeId" placeholder="Search Allowance" popupHeight="300px" dataSource="@ViewBag.strAllowanvcetypeId">
-                                                        <e-dropdownlist-fields text="strAllowanceTypeName" value="strId"></e-dropdownlist-fields>
-                                                    </ejs-dropdownlist>
-                                                </div>*@
+                                                        <ejs-dropdownlist id="@item.strId" required ejs-for="strAllowanvcetypeId" name="@item.strId" filterBarPlaceholder="Search Allowance" allowFiltering="true" filtering="strAllowanvcetypeId" placeholder="Search Allowance" popupHeight="300px" dataSource="@ViewBag.strAllowanvcetypeId">
+                                                            <e-dropdownlist-fields text="strAllowanceTypeName" value="strId"></e-dropdownlist-fields>
+                                                        </ejs-dropdownlist>
+                                                    </div>*@
 
                                             </div>
 

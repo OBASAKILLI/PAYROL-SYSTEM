@@ -19,7 +19,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-6">
-            <h1 style="font-weight:bold;font-family:Calibri;color:#072652">Job Groups</h1>
+            <h1 style="font-weight:bold;font-family:Calibri;color:#072652">Job <span style="color:coral">Groups</span></h1>
 
         </div>
 
@@ -62,7 +62,7 @@
 
 
                     <div class="form-group" style="text-align:center;margin-top:24px">
-                        <input type="submit" value="Add  Job Group" style="background-color:#072652;color:white" class="btn  btn-sm" />
+                        <input type="submit" value="Add  Job Group" style="background-color:coral;color:white" class="btn  btn-sm" />
                     </div>
                 </form>
             </div>
@@ -114,27 +114,27 @@
                         @foreach (var item in job_Groups)
                         {
 
-                    <tr style="font-family:Calibri">
+                            <tr style="font-family:Calibri">
 
-                        <td style="font-size:large"><b>@item.strGroupName</b></td>
-                       
-                        <td>
-                           @item.strBasicSalary
-                        </td>
-                        <td>@item.strNHIFDeduction</td>
-                        <td>@item.strNSSFDeduction</td>
-                        <td>@item.strHouseLevy %</td>
-                        <td>
-                            <a data-toggle="modal" data-target="#Edit_@item.strId">
-                                <i class="fa fa-pencil" aria-hidden="true"></i>
-                                Edit
-                            </a>
-                        </td>
-                        <td>
-                            <a asp-action="" data-toggle="modal" data-target="#Delete_@item.strId" style="color:red" asp-route-id=""><i class="fa fa-trash" aria-hidden="true"></i> <span>Remove</span> </a>
-                        </td>
+                                <td style="font-size:large"><b>@item.strGroupName</b></td>
 
-                    </tr>
+                                <td>
+                                    @item.strBasicSalary
+                                </td>
+                                <td>@item.strNHIFDeduction</td>
+                                <td>@item.strNSSFDeduction</td>
+                                <td>@item.strHouseLevy %</td>
+                                <td>
+                                    <a data-toggle="modal" data-target="#Edit_@item.strId">
+                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                        Edit
+                                    </a>
+                                </td>
+                                <td>
+                                    <a asp-action="" data-toggle="modal" data-target="#Delete_@item.strId" style="color:red" asp-route-id=""><i class="fa fa-trash" aria-hidden="true"></i> <span>Remove</span> </a>
+                                </td>
+
+                            </tr>
                             <!-- Modal delete -->
                             <div id="Edit_@item.strId" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
                                 <div class="modal-dialog">
@@ -147,24 +147,24 @@
                                             </div>
                                         </div>
                                         <form asp-action="UpdateJobGroup" method="post">
-                                            <input asp-for="strId" type="hidden"  value="@item.strId"  />
+                                            <input asp-for="strId" type="hidden" value="@item.strId" />
                                             <div class="modal-body">
 
-                                               
+
                                                 <div class="form-group">
                                                     <input asp-for="strGroupName" type="text" value="@item.strGroupName" required placeholder="Job Group" class="form-control" />
                                                 </div>
                                                 <div class="form-group">
-                                                    <input asp-for="strBasicSalary" type="number"value="@item.strBasicSalary" required placeholder="Basic Salary" class="form-control" />
+                                                    <input asp-for="strBasicSalary" type="number" value="@item.strBasicSalary" required placeholder="Basic Salary" class="form-control" />
                                                 </div>
                                                 <div class="form-group">
-                                                    <input asp-for="strNHIFDeduction" type="number"value="@item.strNHIFDeduction" required placeholder="NHIF " class="form-control" />
+                                                    <input asp-for="strNHIFDeduction" type="number" value="@item.strNHIFDeduction" required placeholder="NHIF " class="form-control" />
                                                 </div>
                                                 <div class="form-group">
-                                                    <input asp-for="strNSSFDeduction" type="number"value="@item.strNSSFDeduction" required placeholder="NSSF" class="form-control" />
+                                                    <input asp-for="strNSSFDeduction" type="number" value="@item.strNSSFDeduction" required placeholder="NSSF" class="form-control" />
                                                 </div>
                                                 <div class="form-group">
-                                                    <input asp-for="strHouseLevy" type="number"value="@item.strHouseLevy" required placeholder="Housing Levy" class="form-control" />
+                                                    <input asp-for="strHouseLevy" type="number" value="@item.strHouseLevy" required placeholder="Housing Levy" class="form-control" />
                                                 </div>
                                             </div>
 

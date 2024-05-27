@@ -22,6 +22,7 @@ namespace PAYROL_SYSTEM.Controllers
         }
 
 
+
         [HttpPost]
         public async Task<IActionResult> AddAllowanceTransaction(AllowancePayment_Transactions allowance)
         {
@@ -36,9 +37,9 @@ namespace PAYROL_SYSTEM.Controllers
             {
                 TempData["Err"] = "Something went wrong";
             }
-
             return Redirect("~/Allowances/Index");
         }
+
 
 
         [HttpPost]
@@ -57,7 +58,6 @@ namespace PAYROL_SYSTEM.Controllers
                 TempData["Err"] = "Something went wrong";
             }
 
-
             return Redirect("~/Allowances/Index");
         }
 
@@ -66,13 +66,14 @@ namespace PAYROL_SYSTEM.Controllers
         [HttpPost]
         public async Task<IActionResult> RemoveAllowanceTransaction(string id, string Employeename)
         {
+
+         
             //   return Json(employees);
             if (id != null)
             {
                 AllowancePayment_Transactions e = await _unitOfWork.allowancePayment_Transactions.GetById(id);
                 if (e != null)
                 {
-
                     await _unitOfWork.allowancePayment_Transactions.Remove(e);
                     _unitOfWork.save();
                     TempData["Err"] = $"Allowance amount of {e.strAmount} for {Employeename}  was Removed";
@@ -86,8 +87,9 @@ namespace PAYROL_SYSTEM.Controllers
             {
                 TempData["Err"] = "Something went wrong";
             }
-
             return Redirect("~/Allowances/Index");
         }
+
+
     }
 }

@@ -92,6 +92,23 @@ namespace PAYROL_SYSTEM.Migrations
                     b.ToTable("Commissions");
                 });
 
+            modelBuilder.Entity("PAYROL_SYSTEM.Models.DeductionSettings", b =>
+                {
+                    b.Property<string>("strId")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(50);
+
+                    b.Property<double>("strHouseLevy");
+
+                    b.Property<double>("strNHIFDeduction");
+
+                    b.Property<double>("strNSSFDeduction");
+
+                    b.HasKey("strId");
+
+                    b.ToTable("deductionSettings");
+                });
+
             modelBuilder.Entity("PAYROL_SYSTEM.Models.Departments", b =>
                 {
                     b.Property<string>("strId")
@@ -132,6 +149,8 @@ namespace PAYROL_SYSTEM.Migrations
 
                     b.Property<string>("strBank_Name");
 
+                    b.Property<double>("strBasicSalary");
+
                     b.Property<DateTime>("strDateOfBirth");
 
                     b.Property<DateTime>("strDate_Of_Join");
@@ -139,6 +158,8 @@ namespace PAYROL_SYSTEM.Migrations
                     b.Property<string>("strDetartmentId");
 
                     b.Property<string>("strEmail");
+
+                    b.Property<int>("strEmployeeType");
 
                     b.Property<string>("strFullName")
                         .IsRequired();
@@ -149,9 +170,6 @@ namespace PAYROL_SYSTEM.Migrations
                         .IsRequired();
 
                     b.Property<string>("strIdNo")
-                        .IsRequired();
-
-                    b.Property<string>("strJobGroupId")
                         .IsRequired();
 
                     b.Property<double>("strLoan");
@@ -255,6 +273,8 @@ namespace PAYROL_SYSTEM.Migrations
                         .ValueGeneratedOnAdd()
                         .HasMaxLength(50);
 
+                    b.Property<double>("PAYE");
+
                     b.Property<string>("stBankAccount")
                         .IsRequired();
 
@@ -275,9 +295,6 @@ namespace PAYROL_SYSTEM.Migrations
                     b.Property<double>("strHousingLevvy");
 
                     b.Property<bool>("strIsPaidStatus");
-
-                    b.Property<string>("strJobGroup")
-                        .IsRequired();
 
                     b.Property<string>("strMonthYear")
                         .IsRequired();

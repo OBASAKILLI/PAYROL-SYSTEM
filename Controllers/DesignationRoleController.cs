@@ -31,7 +31,6 @@ namespace PAYROL_SYSTEM.Controllers
 
             await _unitOfWork.Idesignation_RoleRepo.AddNew(d);
             _unitOfWork.save();
-
             TempData["successs"] = $"{strDesignation_Role} was added successfully";
             return Redirect("~/DesignationRole/Index");
         }
@@ -66,7 +65,6 @@ namespace PAYROL_SYSTEM.Controllers
                 Designation_Role designation_Role = await _unitOfWork.Idesignation_RoleRepo.GetById(id);
                 if (designation_Role != null)
                 {
-                   
                     await _unitOfWork.Idesignation_RoleRepo.Remove(designation_Role);
                     _unitOfWork.save();
                     TempData["successs"] = $"{designation_Role.strDesignation_Role} Romeved successfully";

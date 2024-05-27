@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PAYROL_SYSTEM.Interfaces
 {
-    public interface IJobGroupRepo:IGenericRepository<Job_Groups>
+    public interface IJobGroupRepo : IGenericRepository<Job_Groups>
     {
     }
 }

@@ -24,6 +24,7 @@ namespace PAYROL_SYSTEM.Context
         public DbSet<PAYROL_SYSTEM.Models.PaymentHistory> PaymentHistories { get; set; }
         public DbSet<PAYROL_SYSTEM.Models.PayslipMonthlyInfo> payslipMonthlyInfos { get; set; }
         public DbSet<PAYROL_SYSTEM.Models.AllowancePayment_Transactions> allowancePayment_Transactions { get; set; }
+        public DbSet<PAYROL_SYSTEM.Models.DeductionSettings> deductionSettings { get; set; }
     }
 
 }

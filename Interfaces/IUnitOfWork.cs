@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace PAYROL_SYSTEM.Interfaces
 {
- public   interface IUnitOfWork:IDisposable
+    public interface IUnitOfWork : IDisposable
     {
         IAllowancesRepo allowancesRepo { get; }
         IAllowanceTypeRepo allowanceTypeRepo { get; }
@@ -19,6 +19,7 @@ namespace PAYROL_SYSTEM.Interfaces
         IUserRepo userRepo { get; }
         IAllowancePayment_Transactions allowancePayment_Transactions { get; }
         IPayslipInfo payslipInfo { get; }
+        IDeductionsRepository deductionsRepository { get; }
         int save();
 
     }

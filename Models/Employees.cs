@@ -42,8 +42,8 @@ namespace PAYROL_SYSTEM.Models
         [DisplayName("Active Status")]
         public Active_Status strActive_Status { get; set; }
         [Required]
-        [DisplayName("Job Group")]
-        public string strJobGroupId { get; set; }
+       // [DisplayName("Job Group")]
+      //  public string strJobGroupId { get; set; }
         [DisplayName("Gender")]
         public Gender strGender { get; set; }///........
         [DisplayName("Religion")]
@@ -63,8 +63,12 @@ namespace PAYROL_SYSTEM.Models
         public double strSacco_Deductyion { get; set; }
         [DisplayName("Loan Deduction")]
         public double strLoan { get; set; }
+        [DisplayName("Basic salary")]
+        public double strBasicSalary { get; set; }
         [DisplayName("Penalties")]
         public double strPenalties { get; set; }
+        [DisplayName("Employee Type")]
+        public EmployeeType strEmployeeType { get; set; }
     }
     public class Allowance
     {
@@ -80,6 +84,13 @@ namespace PAYROL_SYSTEM.Models
     {
         Male,
         Female
+        
+    }
+    public enum EmployeeType
+    {
+       Type_1,
+       Type_2,
+       Type_3
         
     }
     public enum Marital_Status

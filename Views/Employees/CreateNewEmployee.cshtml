@@ -39,7 +39,7 @@
 
             </div>
             <div class="col-6" style="text-align:end">
-                <a asp-action="Index" asp-controller="Employees" style="background-color:#072652;color:white;padding:10px"><i class="fa fa-eye"></i> All Employees</a>
+                <a asp-action="Index" asp-controller="Employees" style="background-color:coral;color:white;padding:10px"><i class="fa fa-eye"></i> All Employees</a>
 
             </div>
         </div>
@@ -131,6 +131,13 @@
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
+                        <label asp-for="strBasicSalary" class="control-label"></label>
+                        <input asp-for="strBasicSalary" required type="number" class="form-control" />
+                        <span asp-validation-for="strBasicSalary" class="text-danger"></span>
+                    </div>
+                </div>  
+                <div class="col-sm-3">
+                    <div class="form-group">
                         <label asp-for="strDate_Of_Join" class="control-label"></label>
                         <input asp-for="strDate_Of_Join" required type="date" class="form-control" />
                         <span asp-validation-for="strDate_Of_Join" class="text-danger"></span>
@@ -148,14 +155,14 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-sm-3">
+                @*<div class="col-sm-3">
                     <div class="form-group">
                         <label asp-for="strJobGroupId" class="control-label"></label>
                         <ejs-dropdownlist id="strJobGroupId" required ejs-for="strJobGroupId" name="strJobGroupId" filterBarPlaceholder="Search Job Group" allowFiltering="true" filtering="strJobGroupId" placeholder="Search Job Group" popupHeight="300px" dataSource="@ViewBag.strJobGroupId">
                             <e-dropdownlist-fields text="strGroupName" value="strId"></e-dropdownlist-fields>
                         </ejs-dropdownlist>
                     </div>
-                </div>
+                </div>*@
             </div>
 
 
@@ -200,14 +207,14 @@
                         <span asp-validation-for="strReligion" class="text-danger"></span>
                     </div>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-2">
                     <div class="form-group">
                         <label asp-for="strDateOfBirth" class="control-label"></label>
                         <input asp-for="strDateOfBirth" required type="date" class="form-control" />
                         <span asp-validation-for="strDateOfBirth" class="text-danger"></span>
                     </div>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-2">
                     <div class="form-group">
                         <label asp-for="strMarital_Status" class="control-label"></label>
 
@@ -217,6 +224,18 @@
                             <option>@Marital_Status.Rather_not_say</option>
                         </select>
                         <span asp-validation-for="strMarital_Status" class="text-danger"></span>
+                    </div>
+                </div> 
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label asp-for="strEmployeeType" class="control-label"></label>
+
+                        <select asp-for="strEmployeeType" class="form-control">
+                            <option>@EmployeeType.Type_1</option>
+                            <option>@EmployeeType.Type_2</option>
+                            <option>@EmployeeType.Type_3</option>
+                        </select>
+                        <span asp-validation-for="strEmployeeType" class="text-danger"></span>
                     </div>
                 </div>
             </div>
@@ -233,7 +252,7 @@
                 <div class="col-sm-3">
                     <div class="form-group">
                         <label asp-for="strAccountNo" class="control-label"></label>
-                        <input asp-for="strAccountNo"required class="form-control" />
+                        <input asp-for="strAccountNo" required class="form-control" />
                         <span asp-validation-for="strAccountNo" class="text-danger"></span>
                     </div>
                 </div>
@@ -249,13 +268,13 @@
                 <div class="col-sm-3">
                     <div>Select that applies to this Employee</div>
                     <partial name="_CheckboxList" />
-                    
-                   
+
+
                 </div>
 
 
                 <div class="form-group">
-                    <input type="submit" value="Register New  Employee" class="btn" style="background-color:#072652;color:white;padding:10px" />
+                    <input type="submit" value="Register New  Employee" class="btn" style="background-color:coral;color:white;padding:10px" />
                 </div>
             </div>
 

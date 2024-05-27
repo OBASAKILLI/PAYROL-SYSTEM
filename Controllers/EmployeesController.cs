@@ -20,28 +20,30 @@ namespace PAYROL_SYSTEM.Controllers
 
         public async Task<IActionResult> Index()
         {
-
-
             return View();
         }
+
+
         public async Task<IActionResult> OverTime()
         {
-
-
             return View();
         }
+
+
         public async Task<IActionResult> Commission()
         {
-
-
             return View();
         }
+
+
 
         public async Task<IActionResult> CreateNewEmployee()
         {
-
             return View();
         }
+
+
+
         public async Task<IActionResult> EditEmployee(string id)
         {
             if (id != null)
@@ -58,7 +60,6 @@ namespace PAYROL_SYSTEM.Controllers
                 }
             }
             TempData["Err"] = "Something went wrong";
-
             return Redirect("~/Employees/Index");
         }
 
@@ -77,10 +78,10 @@ namespace PAYROL_SYSTEM.Controllers
             {
                 TempData["Err"] = "Something went wrong";
             }
-
-
             return Redirect("~/Employees/OverTime");
         }
+
+
         [HttpPost]
         public async Task<IActionResult> AddCommission(Commission commission)
         {
@@ -95,13 +96,14 @@ namespace PAYROL_SYSTEM.Controllers
             {
                 TempData["Err"] = "Something went wrong";
             }
-
             return Redirect("~/Employees/Commission");
         }
+
+
+
         [HttpPost]
         public async Task<IActionResult> UpdateOverTime(OverTime overTime, string Employeename)
         {
-
             if (overTime != null)
             {
                 // return Json(overTime);
@@ -113,14 +115,15 @@ namespace PAYROL_SYSTEM.Controllers
             {
                 TempData["Err"] = "Something went wrong";
             }
-
-
             return Redirect("~/Employees/OverTime");
         }
+
+
+
+
         [HttpPost]
         public async Task<IActionResult> UpdateCommission(Commission commission, string Employeename)
         {
-
             if (commission != null)
             {
                 // return Json(overTime);
@@ -132,8 +135,6 @@ namespace PAYROL_SYSTEM.Controllers
             {
                 TempData["Err"] = "Something went wrong";
             }
-
-
             return Redirect("~/Employees/Commission");
         }
 
@@ -141,11 +142,9 @@ namespace PAYROL_SYSTEM.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateNewEmployee(Employees employees, CheckedAllowanceType checkedAllowanceType)
         {
-
             if (employees != null)
             {
                 await _unitOfWork.employeeRepo.AddNew(employees);
-
                 foreach (var data in checkedAllowanceType.checkedAllowances.Where(k => k.strIsChecked == true))
                 {
                     Allowances allowances = new Allowances();
@@ -154,7 +153,6 @@ namespace PAYROL_SYSTEM.Controllers
                     allowances.strAllowanceId = data.strAllowancetypeId;
                     await _unitOfWork.allowancesRepo.AddNew(allowances);
                 }
-
                 _unitOfWork.save();
                 TempData["successs"] = $"{employees.strFullName} was added successfully into the system";
             }
@@ -162,9 +160,11 @@ namespace PAYROL_SYSTEM.Controllers
             {
                 TempData["Err"] = "Something went wrong";
             }
-
             return Redirect("~/Employees/Index");
         }
+
+
+
 
         [HttpPost]
         public async Task<IActionResult> EditEmployee(Employees employees)
@@ -181,9 +181,12 @@ namespace PAYROL_SYSTEM.Controllers
             {
                 TempData["Err"] = "Something went wrong";
             }
-
             return Redirect("~/Employees/Index");
         }
+
+
+
+
         [HttpPost]
         public async Task<IActionResult> RemoveEMployee(string id)
         {
@@ -207,9 +210,11 @@ namespace PAYROL_SYSTEM.Controllers
             {
                 TempData["Err"] = "Something went wrong";
             }
-
             return Redirect("~/Employees/Index");
         }
+
+
+
         [HttpPost]
         public async Task<IActionResult> RemoveOverTime(string id, string Employeename)
         {
@@ -219,7 +224,6 @@ namespace PAYROL_SYSTEM.Controllers
                 OverTime e = await _unitOfWork.overTimeRepo.GetById(id);
                 if (e != null)
                 {
-
                     await _unitOfWork.overTimeRepo.Remove(e);
                     _unitOfWork.save();
                     TempData["Err"] = $"Overtime amount of {e.strAmount} for {Employeename}  was Removed";
@@ -236,6 +240,10 @@ namespace PAYROL_SYSTEM.Controllers
 
             return Redirect("~/Employees/OverTime");
         }
+
+
+
+
         [HttpPost]
         public async Task<IActionResult> RemoveCommission(string id, string Employeename)
         {
@@ -245,7 +253,6 @@ namespace PAYROL_SYSTEM.Controllers
                 Commission e = await _unitOfWork.Icommissionrepo.GetById(id);
                 if (e != null)
                 {
-
                     await _unitOfWork.Icommissionrepo.Remove(e);
                     _unitOfWork.save();
                     TempData["Err"] = $"Commission amount of {e.strAmount} for {Employeename}  was Removed";

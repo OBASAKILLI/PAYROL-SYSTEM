@@ -1,20 +1,50 @@
-﻿
+﻿@using Syncfusion.EJ2
+@using Newtonsoft.Json
 
 @inject PAYROL_SYSTEM.Interfaces.IUnitOfWork _unitofwork
 @{
     PAYROL_SYSTEM.Controllers.UpdatePayrol updatePayrol = new PAYROL_SYSTEM.Controllers.UpdatePayrol(_unitofwork);
 
-  await  updatePayrol.ManageMonthlyPayrolRecord();
+    await updatePayrol.ManageMonthlyPayrolRecord();
+
+    var payslipMonthlyInfos = (await _unitofwork.payslipInfo.GetAll()).Select(k => k.strMonthYear).Distinct();
+
+
 
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Dashboard.cshtml";
 }
+<link href="~/blink.css" rel="stylesheet" />
+@{
+    List<PayslipMonthlyInfo> datapayslipinfo = new List<PayslipMonthlyInfo>();
 
+    var Period = updatePayrol.GetCurrentMonthYear();
+    if (ViewBag.payslipMonthlyInfos != null)
+    {
+        Period = ViewBag.payslipMonthlyInfos;
+
+        var data = (await _unitofwork.payslipInfo.GetAll()).Where(k => k.strMonthYear == ViewBag.payslipMonthlyInfos);
+        foreach (var item in data)
+        {
+            datapayslipinfo.Add(item);
+        }
+    }
+    else
+    {
+        var data = (await _unitofwork.payslipInfo.GetAll()).Where(k => k.strMonthYear == updatePayrol.GetCurrentMonthYear()).Where(k => k.strMonthYear == updatePayrol.GetCurrentMonthYear());
+        foreach (var item in data)
+        {
+            datapayslipinfo.Add(item);
+        }
+    }
+}
+<link href="~/Syncfussion/styles/material.css" rel="stylesheet" />
+<script src="~/Syncfussion/scripts/ej2.min.js"></script>
 
 <div class="container-fluid">
     <div class="row" style="margin:10px">
         <div class="col-6">
-            <h1 style="font-weight:bold;font-family:Calibri;color:#072652">Availlable Payslips for ( @updatePayrol.GetCurrentMonthYear() )</h1>
+            <h2 style="font-weight:bold;font-family:Calibri;color:#072652">Availlable Payslips for  <span style="color:coral">( @Period )</span> </h2>
 
         </div>
 
@@ -31,7 +61,29 @@
             </div>
 
         </div>
-       
+        <div class="col-sm-6">
+            <form asp-action="Index" id="SearchForm">
+                <div class="form-group">
+
+
+                    <ejs-dropdownlist id="id" required name="id" change="submitform" filterBarPlaceholder="Search Period" allowFiltering="true" filtering="payslipMonthlyInfos" placeholder="Search Period" popupHeight="300px" dataSource="@payslipMonthlyInfos">
+                        <e-dropdownlist-fields text="payslipMonthlyInfos" value="payslipMonthlyInfos"></e-dropdownlist-fields>
+                    </ejs-dropdownlist>
+                </div>
+                <script>
+                function payslipMonthlyInfos(e) {
+            var query = new ej.data.Query();
+                    query = (e.text !== '') ? query.where('payslipMonthlyInfos', 'contains', e.text, true) : query;
+            e.updateData(@Html.Raw(JsonConvert.SerializeObject(payslipMonthlyInfos)), query);
+                    }
+
+                    function submitform() {
+                        document.getElementById("SearchForm").submit();
+                    }
+                </script>
+            </form>
+        </div>
+
     </div>
 
 
@@ -49,7 +101,7 @@
     }
     <partial name="_Search" />
     <table class="table table-responsive-sm  table-striped table-bordered  table-sm" style="color:black">
-        <thead style="background-color:#072652;color:white">
+        <thead style="background-color:coral;color:white">
 
             <tr>
                 <th>
@@ -62,51 +114,96 @@
                     Phone No
                 </th>
                 <th>Basic Salary</th>
+                <th>PAYE</th>
                 <th>Period</th>
-                <th>Job Group</th>
-
+                <th>Action</th>
                 <th>Payslip</th>
+
             </tr>
         </thead>
 
         <tbody id="myUL">
-            @foreach (var item in (await _unitofwork.payslipInfo.GetAll()).Where(k => k.strMonthYear == updatePayrol.GetCurrentMonthYear()))
+            @if (datapayslipinfo.Count != 0)
             {
-                string phone = "--";
-                Employees userrr = await _unitofwork.employeeRepo.GetById(item.strUserId);
-                if (userrr != null)
+                @foreach (var item in datapayslipinfo)
                 {
-                    phone = userrr.strPhoneNo;
-                }
+                    string phone = "--";
+                    Employees userrr = await _unitofwork.employeeRepo.GetById(item.strUserId);
+                    if (userrr != null)
+                    {
+                        phone = userrr.strPhoneNo;
+                    }
 
-            <tr>
+                    <tr>
 
-                <td>
-                    <b class="text-capitalize">
-                        <img src="/Icons/ProfilePic.png" style="height:30px;width:30px" />
-                        <span class="text-uppercase" style="margin-left:8px">@item.strFullName</span>
-                    </b>
+                        <td>
+                            <b class="text-capitalize">
+                                <img src="/Icons/ProfilePic.png" style="height:30px;width:30px" />
+                                <span class="text-uppercase" style="margin-left:8px">@item.strFullName</span>
+                            </b>
 
-                </td>
-                <td>
-                    @item.strDepartment
-                </td>
-                <td>
-                   @phone
-                </td>
-                <td>KES @item.strBasicSalary.ToString("#,##0.00")</td>
-                <td>@item.strMonthYear</td>
-                <td>@item.strJobGroup</td>
-                <td>
-                    <a asp-action="GeneratePayslip" asp-controller="Payslips" asp-route-id="@item.strId">
-                        <i class="fa fa-cogs" aria-hidden="true"></i>
-                        Generate
-                    </a>
-                </td>
-            </tr>
+                        </td>
+                        <td>
+                            @item.strDepartment
+                        </td>
+                        <td>
+                            @phone
+                        </td>
+                        <td>KES @item.strBasicSalary.ToString("#,##0.00")</td>
+                        <td>@item.PAYE.ToString("#,##0.00")</td>
+                        <td>@item.strMonthYear</td>
+
+                        <td>
+                            <a data-toggle="modal" data-target="#EditPayee_@item.strId">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                                Edit
+                            </a>
+                        </td>
+                        <td>
+                            <a asp-action="GeneratePayslip" asp-controller="Payslips" asp-route-id="@item.strId">
+                                <i class="fa fa-cogs" aria-hidden="true"></i>
+                                Generate
+                            </a>
+                        </td>
+                    </tr>
 
 
-        }
-            </tbody>
-        </table>
+                    <!-- Modal delete -->
+                    <div id="EditPayee_@item.strId" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div style="font-size:large;font-weight:bold" class="modal-title text-success">
+                                        <i class="fa fa-pencil" aria-hidden="true"></i> Edit Payslip Info
+                                    </div>
+                                </div>
+                                <form asp-action="UpdatepayeeInfo" method="post">
+                                    <input name="strId" type="hidden" value="@item.strId" />
+                                    <div class="modal-body">
+                                        Enter PAYE amonut
+                                        <input type="number" name="Payeeamount" value="@item.PAYE" class="form-control" required placeholder="Enter PAYE" />
+
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <div class=" btn-danger btn-sm" data-dismiss="modal">Cancel</div>
+                                        <input type="submit" id="completebutton" value="SAVE CHANGES" class=" btn-success btn-sm" />
+
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                }}
+            else
+            {
+                <tr style="font-family:Calibri">
+                    <td colspan="8" style=" color:palevioletred;text-align:center">No Payslips have been Generated yet!!..Please wait untill <span class="blink" style="font-weight:bold;color:red"> @updatePayrol.DateOf_PayslipGeneration().ToString("MMM/dd/yyyy") </span> </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>

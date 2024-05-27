@@ -23,7 +23,7 @@ namespace PAYROL_SYSTEM.Controllers
 
 
 
-        public async Task<IActionResult> CreateAllowanceTypes(string strAllowanceTypeName,double strSalary_Rate)
+        public async Task<IActionResult> CreateAllowanceTypes(string strAllowanceTypeName, double strSalary_Rate)
         {
             Allowance_Type d = new Allowance_Type();
             d.strAllowanceTypeName = strAllowanceTypeName;
@@ -38,7 +38,7 @@ namespace PAYROL_SYSTEM.Controllers
         }
 
 
-        public async Task<IActionResult> EdfitAllowanceType(string id, string strAllowanceTypeName,double strSalary_Rate)
+        public async Task<IActionResult> EdfitAllowanceType(string id, string strAllowanceTypeName, double strSalary_Rate)
         {
             if (id != null)
             {

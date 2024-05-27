@@ -15,6 +15,7 @@ namespace PAYROL_SYSTEM.Models
         public string strId { get; set; }
         [Required]
         [DisplayName("Allowance Type")]
+       // [DataType(DataType.EmailAddress)]
         public string strAllowanceTypeName { get; set; }
         [Required]
         [DisplayName("Salary % Rate")]

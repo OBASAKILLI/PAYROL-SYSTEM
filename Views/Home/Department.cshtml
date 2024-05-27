@@ -2,10 +2,10 @@
 @using Newtonsoft.Json
 @using Microsoft.AspNetCore.Http
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
-@inject  PAYROL_SYSTEM.Interfaces.IUnitOfWork _UnitOfWork
+@inject PAYROL_SYSTEM.Interfaces.IUnitOfWork _UnitOfWork
 
 
- 
+
 
 
 @using PAYROL_SYSTEM.Session;
@@ -32,7 +32,7 @@
             <img src="~/Icons/undraw_Online_payments_re_y8f2.png" style="max-height:200px" class="img-fluid" />
             <div style="padding:8px;margin:2px;background-color:white;overflow:auto;margin-bottom:24px;margin-top:16px; ">
                 <div style="font-size:large">
-                   Add New Department
+                    Add New Department
                 </div>
                 <div style="font-size:small;color:gray">
                     add new department into the system
@@ -41,12 +41,12 @@
 
                 </p>
                 <form asp-action="CreateDepartment" method="post">
-                   
+
                     <div class="form-group">
                         <input name="strdepa_name" type="text" required placeholder="Department" class="form-control" />
                     </div>
                     <div class="form-group" style="text-align:center;margin-top:24px">
-                        <input type="submit" value="Add  Department" style="background-color:#072652;color:white" class="btn  btn-sm" />
+                        <input type="submit" value="Add  Department" style="background-color:coral;color:white" class="btn  btn-sm" />
                     </div>
                 </form>
             </div>
@@ -77,7 +77,7 @@
             <table class="table table-responsive-sm  table-striped table-bordered  table-sm" style="color:black">
                 <thead style="background-color:#072652;color:white">
                     <tr>
-                       
+
                         <th>
                             Department
                         </th>
@@ -125,8 +125,8 @@
                                                 <div class="form-group">
                                                     <input name="strDepartmentId" value="@item.strDepartmentId" type="text" required class="form-control" />
                                                 </div>
-                                             
-                                            
+
+
                                             </div>
 
                                             <div class="modal-footer">

@@ -1,20 +1,20 @@
-﻿@model PAYROL_SYSTEM.Models.CheckedAllowanceType 
+﻿@model PAYROL_SYSTEM.Models.CheckedAllowanceType
 @inject PAYROL_SYSTEM.Interfaces.IUnitOfWork _unitOfWork
 @{
     int x = 0;
 }
 @foreach (var allowancetype in await _unitOfWork.allowanceTypeRepo.GetAll())
 {
-<div>
-    <input type="hidden" value="@allowancetype.strId" asp-for="checkedAllowances[x].strAllowancetypeId" />
-  
-    <div  class="form-group form-check">
-        <label class="form-check-label" style="color:black">
-            <input class="form-check-input" checked asp-for="checkedAllowances[x].strIsChecked" />
-            @allowancetype.strAllowanceTypeName
-        </label>
+    <div>
+        <input type="hidden" value="@allowancetype.strId" asp-for="checkedAllowances[x].strAllowancetypeId" />
+
+        <div class="form-group form-check">
+            <label class="form-check-label" style="color:black">
+                <input class="form-check-input"  asp-for="checkedAllowances[x].strIsChecked" />
+                @allowancetype.strAllowanceTypeName
+            </label>
+        </div>
     </div>
-</div>
     x++;
 
 }

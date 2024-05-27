@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PAYROL_SYSTEM.Interfaces
 {
-   public interface IPayslipInfo:IGenericRepository<PayslipMonthlyInfo>
+    public interface IPayslipInfo : IGenericRepository<PayslipMonthlyInfo>
     {
         Task<PayslipMonthlyInfo> GetMonthlyUserPaySlip(string UserId, string MonthYear);
     }

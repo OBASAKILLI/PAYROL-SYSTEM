@@ -17,15 +17,14 @@ namespace PAYROL_SYSTEM
 {
     public class TokenProvider
     {
-    
+
         private readonly IUnitOfWork _unitOfWork;
 
         public TokenProvider(IUnitOfWork unitOfWork)
         {
-           
             _unitOfWork = unitOfWork;
         }
-        public  string LoginUser(string strUserName, string password)
+        public string LoginUser(string strUserName, string password)
         {
             try
             {
@@ -35,14 +34,10 @@ namespace PAYROL_SYSTEM
                 string username = strUserName;
                 string pass = password;
 
-
                 Users user = GetUserDetails(username, pass);
 
-
-                //Authenticate User, Check if its a registered user in DB  - JRozario
                 if (user != null)
                 {
-
                     var key = Encoding.ASCII.GetBytes("YourKey-2374-OFFKDI940NG7:56753253-tyuw-5769-0921-kfirox29zoxv");
 
                     var JWToken = new JwtSecurityToken(
@@ -62,7 +57,8 @@ namespace PAYROL_SYSTEM
                 {
                     return null;
                 }
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
                 return null;
             }
@@ -70,9 +66,9 @@ namespace PAYROL_SYSTEM
         }
 
         public Users GetUserDetails(string strUserName, string password)
-         {
+        {
             return _unitOfWork.userRepo.Login(strUserName, password);
-         
+
         }
         private IEnumerable<Claim> GetUserClaims(Users user)
         {

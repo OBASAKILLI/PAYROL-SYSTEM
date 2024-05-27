@@ -31,29 +31,29 @@
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     </environment>
     @*<environment exclude="Development">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
-              crossorigin="anonymous"
-              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
-    </environment>*@
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+                  asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+                  asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
+                  crossorigin="anonymous"
+                  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
+        </environment>*@
     @*<link rel="stylesheet" href="~/css/site.css" />*@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
 </head>
 <body oncontextmenu="return false;" class="hold-transition skin-blue sidebar-mini bg-white text-black" style="color:black;font-family:Calibri">
     <div class="">
         <header class="main-header">
-            <a href="#" class="logo" style="background-color:white">
+            <a href="#" class="logo" style="background-color:coral">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
-                
-                <span class="logo-mini">  <img src="~/Icons/ECAN_CRF.jpeg" style="width:auto;height:30px;" class="user-image" alt="F"></span>
+
+                <span class="logo-mini">  <img src="~/Icons/ECAN_CRF.jpeg" style="width:auto;height:30px;border-radius:100%" class="user-image" alt="F"></span>
                 <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg" style="color:black;text-align:start;font-size:medium;font-family:Calibri;font-weight:bold" >
-                    <img src="~/Icons/ECAN_CRF.jpeg" style="width:auto;height:40px;" class="user-image" alt="F">
+                <span class="logo-lg" style="color:white;text-align:start;font-size:medium;font-family:Calibri;font-weight:bold">
+                    <img src="~/Icons/ECAN_CRF.jpeg" style="width:auto;height:40px;border-radius:100%" class="user-image" alt="F">
                     ECAN PAYROL
                 </span>
             </a>
-            @{ 
+            @{
                 var name = HttpContextAccessor.HttpContext.Session.GetString("Name");
                 var RegionName = HttpContextAccessor.HttpContext.Session.GetString("RegionName");
             }
@@ -84,8 +84,8 @@
                         <span style="font-size:large;color:white;font-family:Calibri;margin-left:16px;font-weight:bold" class="text-uppercase">@RegionName </span>
                     </div>
                     <div class="col-sm-6 col-6 text-right">
-                      
-                      
+
+
                         <a class="dropdown-toggle "
                            href="#"
                            id="navbarDropdownMenuLink"
@@ -104,7 +104,7 @@
                         <ul style="background-color:white;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);font-family:Calibri" class="dropdown-menu">
                             @*<li><a class="dropdown-item" asp-action="MyAccount" asp-controller="Home">Profile</a></li>
 
-            <li><a class="dropdown-item" asp-action="Settings" asp-controller="customer_Home">Settings</a></li>*@
+                                <li><a class="dropdown-item" asp-action="Settings" asp-controller="customer_Home">Settings</a></li>*@
                             <li class="dropdown-header">
                                 <a asp-action="Edit" style="color:Blue" asp-route-Id="@User.Identity.Name" asp-controller="Users"> Profile</a>
                             </li>
@@ -119,54 +119,54 @@
         </div>
 
         @*<footer class="border-top footer text-muted">
-            <div class="container">
-                &copy; 2021 - CONNIE - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-            </div>
-        </footer>*@
+                <div class="container">
+                    &copy; 2021 - CONNIE - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                </div>
+            </footer>*@
 
 
         @*<script>
-            // Example starter JavaScript for disabling form submissions if there are invalid fields
-            (function () {
-                'use strict'
+                // Example starter JavaScript for disabling form submissions if there are invalid fields
+                (function () {
+                    'use strict'
 
-                // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                var forms = document.querySelectorAll('.needs-validation')
+                    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                    var forms = document.querySelectorAll('.needs-validation')
 
-                // Loop over them and prevent submission
-                Array.prototype.slice.call(forms)
-                    .forEach(function (form) {
-                        form.addEventListener('submit', function (event) {
-                            if (!form.checkValidity()) {
-                                event.preventDefault()
-                                event.stopPropagation()
-                            }
+                    // Loop over them and prevent submission
+                    Array.prototype.slice.call(forms)
+                        .forEach(function (form) {
+                            form.addEventListener('submit', function (event) {
+                                if (!form.checkValidity()) {
+                                    event.preventDefault()
+                                    event.stopPropagation()
+                                }
 
-                            form.classList.add('was-validated')
-                        }, false)
-                    })
-            })()
-        </script>*@
+                                form.classList.add('was-validated')
+                            }, false)
+                        })
+                })()
+            </script>*@
 
         <environment include="Development">
             <script src="~/lib/jquery/dist/jquery.js"></script>
             <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
         </environment>
         @*<environment exclude="Development">
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
-                    asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-                    asp-fallback-test="window.jQuery"
-                    crossorigin="anonymous"
-                    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">
-            </script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
-                    asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
-                    asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-                    crossorigin="anonymous"
-                    integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o">
-            </script>
-        </environment>*@
-       
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+                        asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                        asp-fallback-test="window.jQuery"
+                        crossorigin="anonymous"
+                        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">
+                </script>
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+                        asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+                        asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                        crossorigin="anonymous"
+                        integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o">
+                </script>
+            </environment>*@
+
 
 
         <script src="~/javascript/JavaScript.js"></script>

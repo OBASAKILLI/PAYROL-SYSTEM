@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PAYROL_SYSTEM.Interfaces
 {
-    public interface IpaymentRepo:IGenericRepository<PaymentHistory>
+    public interface IpaymentRepo : IGenericRepository<PaymentHistory>
     {
     }
 }

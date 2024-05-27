@@ -34,7 +34,7 @@ namespace PAYROL_SYSTEM.Controllers
             return View();
         }
 
-    
+
 
 
         public async Task<IActionResult> EdfitDEPARTMENT(string id, string strDepartmentId)

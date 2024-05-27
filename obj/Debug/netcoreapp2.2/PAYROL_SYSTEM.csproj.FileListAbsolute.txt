@@ -5,6 +5,7 @@ D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\bin\Debug\netcoreapp2.2\PAYROL_SYSTEM.dl
 D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\bin\Debug\netcoreapp2.2\PAYROL_SYSTEM.pdb
 D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\bin\Debug\netcoreapp2.2\PAYROL_SYSTEM.Views.dll
 D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\bin\Debug\netcoreapp2.2\PAYROL_SYSTEM.Views.pdb
+D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\PAYROL_SYSTEM.csprojAssemblyReference.cache
 D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\PAYROL_SYSTEM.csproj.CoreCompileInputs.cache
 D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\PAYROL_SYSTEM.RazorAssemblyInfo.cache
 D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\PAYROL_SYSTEM.RazorAssemblyInfo.cs
@@ -26,6 +27,8 @@ D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\Home
 D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\Home\Index.g.cshtml.cs
 D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\Home\Privacy.g.cshtml.cs
 D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\Job_Group\Index.g.cshtml.cs
+D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\Payslips\GeneratePayslip.g.cshtml.cs
+D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\Payslips\Index.g.cshtml.cs
 D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\Shared\Error.g.cshtml.cs
 D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_CheckboxList.g.cshtml.cs
 D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_CookieConsentPartial.g.cshtml.cs
@@ -34,12 +37,6 @@ D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\Shar
 D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_Layout.g.cshtml.cs
 D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_Search.g.cshtml.cs
 D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_ValidationScriptsPartial.g.cshtml.cs
-D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\Test.g.cshtml.cs
-D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\TestTestTest\Create.g.cshtml.cs
-D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\TestTestTest\Delete.g.cshtml.cs
-D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\TestTestTest\Details.g.cshtml.cs
-D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\TestTestTest\Edit.g.cshtml.cs
-D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\TestTestTest\Index.g.cshtml.cs
 D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\_ViewImports.g.cshtml.cs
 D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\_ViewStart.g.cshtml.cs
 D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\PAYROL_SYSTEM.RazorTargetAssemblyInfo.cache
@@ -48,6 +45,3 @@ D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\PAYROL_SYSTEM.Vi
 D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\PAYROL_SYSTEM.dll
 D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\PAYROL_SYSTEM.pdb
 D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\PAYROL_SYSTEM.csproj.CopyComplete
-D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\PAYROL_SYSTEM.csprojAssemblyReference.cache
-D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\Payslips\Index.g.cshtml.cs
-D:\PROJECTS\PAYROL_SYSTEM\PAYROL_SYSTEM\obj\Debug\netcoreapp2.2\Razor\Views\Payslips\GeneratePayslip.g.cshtml.cs

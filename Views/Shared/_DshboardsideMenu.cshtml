@@ -3,7 +3,7 @@
 @using Newtonsoft.Json
 @using PAYROL_SYSTEM.Session;
 
-@{ 
+@{
     var image = HttpContextAccessor.HttpContext.Session.GetString("Imageurl");
     var name = HttpContextAccessor.HttpContext.Session.GetString("Name");
     var desc = HttpContextAccessor.HttpContext.Session.GetString("Desc");
@@ -13,7 +13,7 @@
 }
 <!-- Left side column. contains the logo and sidebar -->
 @*<aside class="main-sidebar" style="background-color:white;color:black;">*@
-<aside class="main-sidebar" style="background-color:white;color:white;box-shadow: 1px 6px 22px 3px rgba(0,0,0,0.1);">
+<aside class="main-sidebar" style="background-color:#0C4A60;color:white;box-shadow: 1px 6px 22px 3px rgba(0,0,0,0.1);">
 
     <!-- sid;white-sbar: style can be found in sidebar.less -->
     <section class="sidebar" style="height: auto;">
@@ -21,9 +21,9 @@
         <ul class="sidebar-menu treeview" data-widget="tree">
 
             <li class="treeview" style="height: auto;color:black">
-                <a asp-action="Dashboard"  asp-controller="Home">
-                    <i style="color:gray" class="fal fa-tachometer-alt-slowest"></i>
-                    <span style="color:gray">
+                <a asp-action="Dashboard" asp-controller="Home">
+                    <i style="color:white" class="fal fa-tachometer-alt-slowest"></i>
+                    <span style="color:white;margin-left:8px">
                         <b>Dashboard</b>
 
                     </span>
@@ -37,14 +37,18 @@
 
 
             </li>
+            <style>
+                .a:hover {
+                    background-color: red;
+                }
+            </style>
+            <li class="treeview" style="height: auto;color:white">
+                <a href="#" style="color:white">
+                    <i class="fa fa-book" aria-hidden="true"></i>
 
-            <li class="treeview" style="height: auto;color:gray">
-                <a href="#">
-                    <img src="~/Icons/001-booking.png" style="height:24px;width:auto;margin-right:12px" class="img-fluid" />
-
-                    <span style="color:gray;" class="Mennnnu"> Employees  <br /><span style="margin-left:44px;font-size:x-small" class="Mennnnu">View/Manage Employees </span></span>
+                    <span style="color:white;" class="Mennnnu"> Employees  <br /><span style="margin-left:44px;font-size:x-small" class="Mennnnu">View/Manage Employees </span></span>
                     <span class="pull-right-container">
-                        <i style="color:gray" class="fa fa-angle-left pull-right"></i>
+                        <i style="color:white" class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu" style="display: none">
@@ -52,17 +56,17 @@
                         <a asp-action="Index" asp-controller="Employees" asp-route-Id="">
                             <i class="fa fa-eye" aria-hidden="true"></i>View all Employees
                         </a>
-                    </li> 
+                    </li>
                     <li>
                         <a asp-action="OverTime" asp-controller="Employees" asp-route-Id="">
                             <i class="fa fa-eye" aria-hidden="true"></i>Employee OverTime
                         </a>
-                    </li> 
+                    </li>
                     <li>
                         <a asp-action="Commission" asp-controller="Employees" asp-route-Id="">
                             <i class="fa fa-eye" aria-hidden="true"></i>Employee Commission
                         </a>
-                    </li> 
+                    </li>
                     <li>
                         <a asp-action="Index" asp-controller="Allowances" asp-route-Id="">
                             <i class="fa fa-eye" aria-hidden="true"></i>Employee Allowances
@@ -78,13 +82,12 @@
                 </ul>
             </li>
 
-            <li class="treeview" style="height: auto;color:gray">
-                <a href="#">
-                    <img src="~/Icons/001-booking.png" style="height:24px;width:auto;margin-right:12px" class="img-fluid" />
-
-                    <span style="color:gray;" class="Mennnnu"> Departments  <br /><span style="margin-left:44px;font-size:x-small" class="Mennnnu">View/Manage departments </span></span>
+            <li class="treeview" style="height: auto;color:white">
+                <a href="#" style="color:white">
+                    <i class="fa fa-book" aria-hidden="true"></i>
+                    <span style="color:white;" class="Mennnnu"> Departments  <br /><span style="margin-left:44px;font-size:x-small" class="Mennnnu">View/Manage departments </span></span>
                     <span class="pull-right-container">
-                        <i style="color:gray" class="fa fa-angle-left pull-right"></i>
+                        <i style="color:white" class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu" style="display: none">
@@ -96,14 +99,13 @@
 
 
                 </ul>
-            </li>  
-            <li class="treeview" style="height: auto;color:gray">
-                <a href="#">
-                    <img src="~/Icons/001-booking.png" style="height:24px;width:auto;margin-right:12px" class="img-fluid" />
-
-                    <span style="color:gray;" class="Mennnnu"> Designation/Role  <br /><span style="margin-left:44px;font-size:x-small" class="Mennnnu">View/Manage Designation/Roles </span></span>
+            </li>
+            <li class="treeview" style="height: auto;color:white">
+                <a href="#" style="color:white">
+                    <i class="fa fa-book" aria-hidden="true"></i>
+                    <span style="color:white;" class="Mennnnu"> Designation/Role  <br /><span style="margin-left:44px;font-size:x-small" class="Mennnnu">View/Manage Designation/Roles </span></span>
                     <span class="pull-right-container">
-                        <i style="color:gray" class="fa fa-angle-left pull-right"></i>
+                        <i style="color:white" class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu" style="display: none">
@@ -116,13 +118,12 @@
 
                 </ul>
             </li>
-            <li class="treeview" style="height: auto;color:gray">
-                <a href="#">
-                    <img src="~/Icons/001-booking.png" style="height:24px;width:auto;margin-right:12px" class="img-fluid" />
-
-                    <span style="color:gray;" class="Mennnnu"> Job Groups  <br /><span style="margin-left:44px;font-size:x-small" class="Mennnnu">View/Manage Job Groups </span></span>
+            @*<li class="treeview" style="height: auto;color:white">
+                <a href="#" style="color:white">
+                    <i class="fa fa-book" aria-hidden="true"></i>
+                    <span style="color:white;" class="Mennnnu"> Job Groups  <br /><span style="margin-left:44px;font-size:x-small" class="Mennnnu">View/Manage Job Groups </span></span>
                     <span class="pull-right-container">
-                        <i style="color:gray" class="fa fa-angle-left pull-right"></i>
+                        <i style="color:white" class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu" style="display: none">
@@ -134,14 +135,13 @@
 
 
                 </ul>
-            </li>
-            <li class="treeview" style="height: auto;color:gray">
-                <a href="#">
-                    <img src="~/Icons/001-booking.png" style="height:24px;width:auto;margin-right:12px" class="img-fluid" />
-
-                    <span style="color:gray;" class="Mennnnu"> Allowance Types  <br /><span style="margin-left:44px;font-size:x-small" class="Mennnnu">View/Manage Allowance Types </span></span>
+            </li>*@
+            <li class="treeview" style="height: auto;color:white">
+                <a href="#" style="color:white">
+                    <i class="fa fa-book" aria-hidden="true"></i>
+                    <span style="color:white;" class="Mennnnu"> Allowance Types  <br /><span style="margin-left:44px;font-size:x-small" class="Mennnnu">View/Manage Allowance Types </span></span>
                     <span class="pull-right-container">
-                        <i style="color:gray" class="fa fa-angle-left pull-right"></i>
+                        <i style="color:white" class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu" style="display: none">

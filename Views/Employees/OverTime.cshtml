@@ -2,7 +2,7 @@
 @using Newtonsoft.Json
 @using Microsoft.AspNetCore.Http
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
-@model OverTime 
+@model OverTime
 
 @inject PAYROL_SYSTEM.Interfaces.IUnitOfWork _unitOfwork
 
@@ -20,7 +20,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-6">
-            <h1 style="font-weight:bold;font-family:Calibri;color:#072652">Employee Overtime</h1>
+            <h1 style="font-weight:bold;font-family:Calibri;color:#072652">Employee <span style="color:coral">Overtime</span></h1>
         </div>
     </div>
 
@@ -76,7 +76,7 @@
                     </script>
 
                     <div class="form-group" style="text-align:center;margin-top:24px">
-                        <input type="submit" value="Record OverTime" style="background-color:#072652;color:white" class="btn  btn-sm" />
+                        <input type="submit" value="Record OverTime" style="background-color:coral;color:white" class="btn  btn-sm" />
                     </div>
                 </form>
             </div>
@@ -169,8 +169,8 @@
                                         </div>
                                         <form asp-action="UpdateOverTime" method="post">
                                             <input asp-for="strId" type="hidden" value="@item.strId" />
-                                            <input asp-for="strUserId" type="hidden" value="@item.strUserId" /> 
-                                            <input  type="hidden" name="Employeename" value="@Employeename" />
+                                            <input asp-for="strUserId" type="hidden" value="@item.strUserId" />
+                                            <input type="hidden" name="Employeename" value="@Employeename" />
                                             <div class="modal-body">
 
 

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace PAYROL_SYSTEM.Interfaces
 {
-   public interface IGenericRepository<T> where T : class
+    public interface IGenericRepository<T> where T : class
 
     {
         Task AddNew(T entity);  //Add

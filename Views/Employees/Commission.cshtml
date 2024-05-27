@@ -12,7 +12,7 @@
 <link href="~/Syncfussion/styles/material.css" rel="stylesheet" />
 <script src="~/Syncfussion/scripts/ej2.min.js"></script>
 @{
-    List<Commission>  commissions = await _unitOfwork.Icommissionrepo.GetAll();
+    List<Commission> commissions = await _unitOfwork.Icommissionrepo.GetAll();
     var GUID = Guid.NewGuid().ToString();
     Layout = "~/Views/Shared/_Dashboard.cshtml";
     ViewBag.strUserId = (await _unitOfwork.employeeRepo.GetAll()).Where(k => k.strActive_Status == Active_Status.Active);
@@ -20,7 +20,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-6">
-            <h1 style="font-weight:bold;font-family:Calibri;color:#072652">Employee Commission</h1>
+            <h1 style="font-weight:bold;font-family:Calibri;color:#072652">Employee <span style="color:coral">Commission</span> </h1>
         </div>
     </div>
 
@@ -76,7 +76,7 @@
                     </script>
 
                     <div class="form-group" style="text-align:center;margin-top:24px">
-                        <input type="submit" value="Record Commission" style="background-color:#072652;color:white" class="btn  btn-sm" />
+                        <input type="submit" value="Record Commission" style="background-color:coral;color:white" class="btn  btn-sm" />
                     </div>
                 </form>
             </div>

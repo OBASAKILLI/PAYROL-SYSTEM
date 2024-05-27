@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PAYROL_SYSTEM.Interfaces
 {
-    public interface IUserRepo:IGenericRepository<Users>
+    public interface IUserRepo : IGenericRepository<Users>
     {
         Users Login(string Username, string Password);
     }

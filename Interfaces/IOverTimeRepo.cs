@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PAYROL_SYSTEM.Interfaces
 {
-    public interface IOverTimeRepo:IGenericRepository<OverTime>
+    public interface IOverTimeRepo : IGenericRepository<OverTime>
     {
     }
 }

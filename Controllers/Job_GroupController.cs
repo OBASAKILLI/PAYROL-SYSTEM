@@ -16,19 +16,19 @@ namespace PAYROL_SYSTEM.Controllers
         {
             _unitOfWork = unitOfWork;
         }
-        public  IActionResult Index()
+        public IActionResult Index()
         {
-            
+
             return View();
         }
 
         public async Task<IActionResult> CreateJobGroup(Job_Groups job_Groups)
         {
             job_Groups.strId = Guid.NewGuid().ToString();
-           // return Json(job_Groups);
+            // return Json(job_Groups);
             if (!ModelState.IsValid)
             {
-               // return Json(job_Groups);
+                // return Json(job_Groups);
                 await _unitOfWork.jobGroupRepo.AddNew(job_Groups);
                 _unitOfWork.save();
 

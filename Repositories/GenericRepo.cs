@@ -11,7 +11,7 @@ namespace PAYROL_SYSTEM.Repositories
     public class GenericRepo<T> : IGenericRepository<T> where T : class
     {
         public readonly AppDbContext _appDbContext;
-      
+
 
         public GenericRepo(AppDbContext appDbContext)
         {
@@ -19,17 +19,18 @@ namespace PAYROL_SYSTEM.Repositories
         }
         public async Task AddNew(T entity)
         {
-           await _appDbContext.Set<T>().AddAsync(entity);
+            await _appDbContext.Set<T>().AddAsync(entity);
         }
 
         public async Task<List<T>> GetAll()
         {
-           return await _appDbContext.Set<T>().ToListAsync();
+            return await _appDbContext.Set<T>().ToListAsync();
         }
 
         public async Task<T> GetById(string Id)
         {
-         return   await _appDbContext.Set<T>().FindAsync(Id);        }
+            return await _appDbContext.Set<T>().FindAsync(Id);
+        }
 
         public async Task Remove(T entity)
         {
